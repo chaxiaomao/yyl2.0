@@ -52,6 +52,7 @@ return [
     'View' => '查看',
     'Created At' => '创建时间',
     'Updated At' => '更新时间',
+    'Assignments Role/Permissions' => '分配角色/权限',
     '' => '',
 ];
 
