@@ -20,7 +20,7 @@ class ActivitySearch extends ActivityModel
         return [
             [['id', 'area_limit', 'share_number', 'start_id', 'created_by', 'updated_by'], 'integer'],
             [['type', 'title', 'label', 'content', 'seo_code', 'start_at', 'end_at', 'vote_freq', 'is_open_draw', 'is_check', 'is_released', 'status', 'created_at', 'updated_at'], 'safe'],
-            [['income_number'], 'number'],
+            [['income'], 'number'],
         ];
     }
 
@@ -69,7 +69,7 @@ class ActivitySearch extends ActivityModel
             'end_at' => $this->end_at,
             'area_limit' => $this->area_limit,
             'share_number' => $this->share_number,
-            'income_number' => $this->income_number,
+            'income' => $this->income,
             'start_id' => $this->start_id,
             'created_by' => $this->created_by,
             'updated_by' => $this->updated_by,

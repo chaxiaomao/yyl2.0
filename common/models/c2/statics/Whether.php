@@ -26,8 +26,8 @@ class Whether extends AbstractStaticClass {
     public static function getData($id = '', $attr = '') {
         if (is_null(static::$_data)) {
             static::$_data = [
-                static::TYPE_NO => ['id' => static::TYPE_NO, 'label' => Yii::t('app.c2', 'NO')],
-                static::TYPE_YES => ['id' => static::TYPE_YES, 'label' => Yii::t('app.c2', 'YES')],
+                static::TYPE_NO => ['id' => static::TYPE_NO, 'label' => Yii::t('app.c2', 'No')],
+                static::TYPE_YES => ['id' => static::TYPE_YES, 'label' => Yii::t('app.c2', 'Yes')],
             ];
         }
         if ($id !== '' && !empty($attr)) {

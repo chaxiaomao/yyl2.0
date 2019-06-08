@@ -7,6 +7,7 @@ use common\models\c2\entity\ActivityModel;
 use common\models\c2\search\ActivitySearch;
 
 use cza\base\components\controllers\backend\ModelController as Controller;
+use yii\helpers\ArrayHelper;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
@@ -16,6 +17,41 @@ use yii\filters\VerbFilter;
 class DefaultController extends Controller
 {
     public $modelClass = 'common\models\c2\entity\ActivityModel';
+
+    public function actions()
+    {
+        return ArrayHelper::merge(parent::actions(), [
+            'ueditor' => [
+                'class' => 'common\widgets\ueditor\UeditorAction',
+                'config' => [
+                    //上传图片配置
+                    'entity_class' => \common\models\c2\entity\ActivityModel::className(),
+                    'entity_attribute' => 'content',
+                    'imageUrlPrefix' => BACKEND_BASE_URL, /* 图片访问路径前缀 */
+                    // 'imagePathFormat' => "/uploads/ueditor/{pathHash:default}/{id}/{CachingPath}/{hash}", /* 上传保存路径,可以自定义保存路径和文件名格式 */
+                    'imagePathFormat' => "/uploads/ueditor/{pathHash:default}/{id}/{CachingPath}/{hash}", /* 上传保存路径,可以自定义保存路径和文件名格式 */
+                ]
+            ],
+            'images-sort' => [
+                'class' => \cza\base\components\actions\common\AttachmentSortAction::className(),
+                'attachementClass' => \common\models\c2\entity\EntityAttachmentImage::className(),
+            ],
+            'images-delete' => [
+                'class' => \cza\base\components\actions\common\AttachmentDeleteAction::className(),
+                'attachementClass' => \common\models\c2\entity\EntityAttachmentImage::className(),
+            ],
+            'images-upload' => [
+                'class' => \cza\base\components\actions\common\AttachmentUploadAction::className(),
+                'attachementClass' => \common\models\c2\entity\EntityAttachmentImage::className(),
+                'entityClass' => \common\models\c2\entity\ActivityModel::className(),
+                'entityAttribute' => 'album',
+                // 'onComplete' => function ($filename, $params) {
+                //     Yii::info($filename);
+                //     Yii::info($params);
+                // }
+            ],
+        ]);
+    }
     
     /**
      * Lists all ActivityModel models.

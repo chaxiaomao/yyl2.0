@@ -43,24 +43,10 @@ $form = ActiveForm::begin([
             'form' => $form,
             'columns' => 2,
             'attributes' => [
-                'type' => ['type' => Form::INPUT_DROPDOWN_LIST, 'items' => []],
+                'type' => ['type' => Form::INPUT_DROPDOWN_LIST, 'items' => \common\models\c2\statics\ActivityType::getHashMap('id', 'label')],
                 'title' => ['type' => Form::INPUT_TEXT, 'options' => ['placeholder' => $model->getAttributeLabel('title')]],
                 'label' => ['type' => Form::INPUT_TEXT, 'options' => ['placeholder' => $model->getAttributeLabel('label')]],
-                'content' => ['type' => Form::INPUT_WIDGET, 'widgetClass' => '\vova07\imperavi\Widget', 'options' => [
-                    'settings' => [
-                        'minHeight' => 150,
-                        'buttonSource' => true,
-                        'lang' => $regularLangName,
-                        'plugins' => [
-                            'fontsize',
-                            'fontfamily',
-                            'fontcolor',
-                            'table',
-                            'textdirection',
-                            'fullscreen',
-                        ],
-                    ]
-                ],],
+
                 'seo_code' => ['type' => Form::INPUT_TEXT, 'options' => ['placeholder' => $model->getAttributeLabel('seo_code')]],
                 'start_at' => ['type' => Form::INPUT_WIDGET, 'widgetClass' => '\kartik\widgets\DateTimePicker', 'options' => [
                     'options' => ['placeholder' => Yii::t('app.c2', 'Date Time...')], 'pluginOptions' => ['format' => 'yyyy-mm-dd hh:ii:ss', 'autoclose' => true],
@@ -68,25 +54,64 @@ $form = ActiveForm::begin([
                 'end_at' => ['type' => Form::INPUT_WIDGET, 'widgetClass' => '\kartik\widgets\DateTimePicker', 'options' => [
                     'options' => ['placeholder' => Yii::t('app.c2', 'Date Time...')], 'pluginOptions' => ['format' => 'yyyy-mm-dd hh:ii:ss', 'autoclose' => true],
                 ],],
-                'vote_freq' => ['type' => Form::INPUT_WIDGET, 'widgetClass' => '\kartik\checkbox\CheckboxX', 'options' => [
-                    'pluginOptions' => ['threeState' => false],
-                ],],
+                // 'vote_freq' => ['type' => Form::INPUT_WIDGET, 'widgetClass' => '\kartik\checkbox\CheckboxX', 'options' => [
+                //     'pluginOptions' => ['threeState' => false],
+                // ],],
+                'vote_freq' => ['type' => Form::INPUT_TEXT, 'options' => ['placeholder' => $model->getAttributeLabel('area_limit')]],
                 'area_limit' => ['type' => Form::INPUT_TEXT, 'options' => ['placeholder' => $model->getAttributeLabel('area_limit')]],
                 'share_number' => ['type' => Form::INPUT_TEXT, 'options' => ['placeholder' => $model->getAttributeLabel('share_number')]],
-                'income_number' => ['type' => Form::INPUT_TEXT, 'options' => ['placeholder' => $model->getAttributeLabel('income_number')]],
+                'income' => ['type' => Form::INPUT_TEXT, 'options' => ['placeholder' => $model->getAttributeLabel('income_number')]],
+                'status' => ['type' => Form::INPUT_DROPDOWN_LIST, 'items' => EntityModelStatus::getHashMap('id', 'label')],
+                // 'content' => ['type' => Form::INPUT_WIDGET, 'widgetClass' => '\vova07\imperavi\Widget', 'options' => [
+                //     'settings' => [
+                //         'minHeight' => 150,
+                //         'buttonSource' => true,
+                //         'lang' => $regularLangName,
+                //         'plugins' => [
+                //             'fontsize',
+                //             'fontfamily',
+                //             'fontcolor',
+                //             'table',
+                //             'textdirection',
+                //             'fullscreen',
+                //         ],
+                //     ]
+                // ],],
+            ]
+        ]);
+
+        echo Form::widget([
+            'model' => $model,
+            'form' => $form,
+            'columns' => 4,
+            'attributes' => [
                 'is_open_draw' => ['type' => Form::INPUT_WIDGET, 'widgetClass' => '\kartik\checkbox\CheckboxX', 'options' => [
                     'pluginOptions' => ['threeState' => false],
                 ],],
                 'is_check' => ['type' => Form::INPUT_WIDGET, 'widgetClass' => '\kartik\checkbox\CheckboxX', 'options' => [
                     'pluginOptions' => ['threeState' => false],
                 ],],
-                'start_id' => ['type' => Form::INPUT_TEXT, 'options' => ['placeholder' => $model->getAttributeLabel('start_id')]],
+                // 'start_id' => ['type' => Form::INPUT_TEXT, 'options' => ['placeholder' => $model->getAttributeLabel('start_id')]],
                 'is_released' => ['type' => Form::INPUT_WIDGET, 'widgetClass' => '\kartik\checkbox\CheckboxX', 'options' => [
                     'pluginOptions' => ['threeState' => false],
                 ],],
-                'status' => ['type' => Form::INPUT_DROPDOWN_LIST, 'items' => EntityModelStatus::getHashMap('id', 'label')],
             ]
         ]);
+
+        echo Form::widget([
+            'model' => $model,
+            'form' => $form,
+            //            'columns' => 2,
+            'attributes' => [
+                'content' => ['type' => Form::INPUT_WIDGET,
+                    'widgetClass' => 'common\widgets\ueditor\Ueditor',
+                    'options' => [
+                        // 'class' => 'col-sm-6 pull-left',
+                    ],
+                ],
+            ],
+        ]);
+
         echo Html::beginTag('div', ['class' => 'box-footer']);
         echo Html::submitButton('<i class="fa fa-save"></i> ' . Yii::t('app.c2', 'Save'), ['type' => 'button', 'class' => 'btn btn-primary pull-right']);
         echo Html::a('<i class="fa fa-arrow-left"></i> ' . Yii::t('app.c2', 'Go Back'), ['index'], ['data-pjax' => '0', 'class' => 'btn btn-default pull-right', 'title' => Yii::t('app.c2', 'Go Back'),]);

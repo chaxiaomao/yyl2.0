@@ -70,13 +70,40 @@ $this->params['breadcrumbs'][] = $this->title;
             // 'vote_freq',
             // 'area_limit',
             'share_number',
-            'income_number',
-            'is_open_draw',
-            'is_check',
+            'income',
+            // 'is_open_draw',
+            [
+                'attribute' => 'is_open_draw',
+                'value' => function ($model) {
+                    return \common\models\c2\statics\Whether::getLabel($model->is_open_draw);
+                },
+                'filter' => \common\models\c2\statics\Whether::getHashMap('id', 'label')
+            ],
+            // 'is_check',
+            [
+                'attribute' => 'is_check',
+                'value' => function ($model) {
+                    return \common\models\c2\statics\Whether::getLabel($model->is_check);
+                },
+                'filter' => \common\models\c2\statics\Whether::getHashMap('id', 'label')
+            ],
             // 'start_id',
-            'created_by',
+            // 'created_by',
             // 'updated_by',
-            'is_released',
+            // 'is_released',
+            [
+                'attribute' => 'is_released',
+                'value' => function ($model) {
+                    return \common\models\c2\statics\Whether::getLabel($model->is_released);
+                },
+                'filter' => \common\models\c2\statics\Whether::getHashMap('id', 'label')
+            ],
+            [
+                'attribute' => 'created_by',
+                'value' => function ($model) {
+                    return $model->creator->profile->fullname;
+                }
+            ],
             // 'status',
             // 'created_at',
             // 'updated_at',

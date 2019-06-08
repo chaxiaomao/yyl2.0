@@ -8,6 +8,7 @@
 
 return [
     'activity' => ['class' => 'backend\modules\Activity\Module',],
+    'activity-entrance' => ['class' => 'backend\modules\ActivityEntrance\Module',],
     'logistics' => ['class' => 'backend\modules\Logistics\Module',],
     'sys' => ['class' => 'backend\modules\Sys\Module',],
     'rbac' => [

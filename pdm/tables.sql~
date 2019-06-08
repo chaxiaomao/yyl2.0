@@ -34,7 +34,7 @@ create table c2_activity
    id                   bigint not null auto_increment,
    type                 tinyint(4) default 1,
    title                varchar(255),
-   label              varchar(255),
+   "label"              varchar(255),
    content              text,
    seo_code             varchar(255),
    start_at             datetime,
@@ -136,7 +136,7 @@ create table c2_gift
 (
    id                   bigint not null auto_increment,
    name                 int default 0,
-   label              varchar(255),
+   "label"              varchar(255),
    activity_id          bigint,
    code                 varchar(255),
    obtain_score         decimal(10,2) default 0,

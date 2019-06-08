@@ -1,9 +1,9 @@
 <?php
 
-define('BACKEND_BASE_URL', 'http://be-jade.tunnel.echomod.cn');
+define('BACKEND_BASE_URL', 'http://be-yyl.tunnel.echomod.cn');
 define('FRONTEND_BASE_URL', 'http://fe-apollo-pre.local.bulletelc.com');
 define('ESHOP_BASE_URL', 'http://eshop-apollo-pre.local.bulletelc.com');
-define('IMAGE_BASE_URL', 'http://img-apollo-pre.local.bulletelc.com');
+define('IMAGE_BASE_URL', 'http://img-yyl.tunnel.echomod.cn');
 
 //define('BACKEND_BASE_URL', 'https://be-apollo-pre-staging.bulletelc.com');
 //define('FRONTEND_BASE_URL', 'https://fe-apollo-pre-staging.bulletelc.com');
