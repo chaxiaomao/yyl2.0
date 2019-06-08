@@ -100,12 +100,12 @@ class FeUserSearch extends FeUserModel
 
         return $dataProvider;
     }
-
+    
     public function getPageParamName($splitor = '-'){
         $name = "FeUserModelPage";
         return \Yii::$app->czaHelper->naming->toSplit($name);
     }
-
+    
     public function getSortParamName($splitor = '-'){
         $name = "FeUserModelSort";
         return \Yii::$app->czaHelper->naming->toSplit($name);

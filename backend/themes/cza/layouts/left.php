@@ -36,7 +36,8 @@ use yii\helpers\Html;
                         'label' => Yii::t('app.c2', '{s1} Management', ['s1' => Yii::t('app.c2', 'Business')]), 'icon' => 'fa fa-circle-o', 'url' => ['#'], 'options' => ['class' => 'treeview'],
                         'items' => [
                             ['label' => Yii::t('app.c2', '{s1} Management', ['s1' => Yii::t('app.c2', 'Activity')]), 'icon' => 'fa fa-circle-o', 'url' => ['/activity']],
-                            ['label' => Yii::t('app.c2', '{s1} Management', ['s1' => Yii::t('app.c2', 'Activity Entrance')]), 'icon' => 'fa fa-circle-o', 'url' => ['/activity-entrance']],
+                            ['label' => Yii::t('app.c2', '{s1} Management', ['s1' => Yii::t('app.c2', 'Activity Player')]), 'icon' => 'fa fa-circle-o', 'url' => ['/activity-player']],
+                            ['label' => Yii::t('app.c2', '{s1} Management', ['s1' => Yii::t('app.c2', 'Fe User')]), 'icon' => 'fa fa-circle-o', 'url' => ['/fe-user']],
                         ]
                     ],
                     [

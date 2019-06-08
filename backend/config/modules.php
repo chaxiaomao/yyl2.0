@@ -8,7 +8,9 @@
 
 return [
     'activity' => ['class' => 'backend\modules\Activity\Module',],
-    'activity-entrance' => ['class' => 'backend\modules\ActivityEntrance\Module',],
+    'activity-player' => ['class' => 'backend\modules\ActivityPlayer\Module',],
+    'fe-user' => ['class' => 'backend\modules\FeUser\Module',],
+
     'logistics' => ['class' => 'backend\modules\Logistics\Module',],
     'sys' => ['class' => 'backend\modules\Sys\Module',],
     'rbac' => [

@@ -14,10 +14,10 @@ use Yii;
  * Class FeUserType
  * @package common\models\c2\statics
  */
-class FeUserType extends AbstractStaticClass
+class ActivityPlayerState extends AbstractStaticClass
 {
-    const TYPE_SYS_REGISTRATION = 1;  // load in when demand
-    const TYPE_USER_REGISTRATION = 2;  // load in when demand
+    const TYPE_CHECKED = 1;  // load in when demand
+    const TYPE_NOT_CHECK = 2;  // load in when demand
 
     protected static $_data;
 
@@ -30,8 +30,8 @@ class FeUserType extends AbstractStaticClass
     public static function getData($id = '', $attr = '') {
         if (is_null(static::$_data)) {
             static::$_data = [
-                static::TYPE_SYS_REGISTRATION => ['id' => static::TYPE_SYS_REGISTRATION, 'label' => Yii::t('app.c2', 'Sys Registration')],
-                static::TYPE_USER_REGISTRATION => ['id' => static::TYPE_USER_REGISTRATION, 'label' => Yii::t('app.c2', 'User Registration')],
+                static::TYPE_CHECKED => ['id' => static::TYPE_CHECKED, 'label' => Yii::t('app.c2', 'Checked')],
+                static::TYPE_NOT_CHECK => ['id' => static::TYPE_NOT_CHECK, 'label' => Yii::t('app.c2', 'Not Check')],
             ];
         }
         if ($id !== '' && !empty($attr)) {
