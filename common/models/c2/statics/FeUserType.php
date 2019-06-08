@@ -16,8 +16,7 @@ use Yii;
  */
 class FeUserType extends AbstractStaticClass
 {
-    const TYPE_CUSTOMER = 1;  // load in when demand
-    const TYPE_EMPLOYEE = 2;  // load in when config settings init
+    const TYPE_DEFAULT = 1;  // load in when demand
 
     protected static $_data;
 
@@ -30,8 +29,7 @@ class FeUserType extends AbstractStaticClass
     public static function getData($id = '', $attr = '') {
         if (is_null(static::$_data)) {
             static::$_data = [
-                static::TYPE_CUSTOMER => ['id' => static::TYPE_CUSTOMER, 'label' => Yii::t('app.c2', 'Customer')],
-                static::TYPE_EMPLOYEE => ['id' => static::TYPE_EMPLOYEE, 'label' => Yii::t('app.c2', 'Employee')],
+                static::TYPE_DEFAULT => ['id' => static::TYPE_DEFAULT, 'label' => Yii::t('app.c2', 'Default')],
             ];
         }
         if ($id !== '' && !empty($attr)) {
