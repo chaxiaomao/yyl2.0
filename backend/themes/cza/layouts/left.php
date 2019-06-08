@@ -31,6 +31,13 @@ use yii\helpers\Html;
                     ['label' => Yii::t('app.c2', 'Menu'), 'options' => ['class' => 'header']],
                     ['label' => Yii::t('app.c2', 'Dashboard'), 'icon' => 'fa fa-circle-o', 'url' => ['/']],
                     // ['label' => Yii::t('app.c2', 'Resume'), 'icon' => 'fa fa-circle-o', 'url' => ['/resume']],
+
+                    [
+                        'label' => Yii::t('app.c2', '{s1} Manager', ['s1' => Yii::t('app.c2', 'Business')]), 'icon' => 'fa fa-circle-o', 'url' => ['#'], 'options' => ['class' => 'treeview'],
+                        'items' => [
+                            ['label' => Yii::t('app.c2', '{s1} Manager', ['s1' => Yii::t('app.c2', 'Activity')]), 'icon' => 'fa fa-circle-o', 'url' => ['/activity']],
+                        ]
+                    ],
                     [
                         'label' => Yii::t('app.c2', 'Logistics'), 'visible' => \Yii::$app->user->can('P_Logistics'), 'icon' => 'fa fa-circle-o', 'url' => ['#'], 'options' => ['class' => 'treeview'],
                         'items' => [

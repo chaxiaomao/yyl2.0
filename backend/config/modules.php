@@ -7,11 +7,8 @@
  */
 
 return [
-    'crm' => ['class' => 'backend\modules\CRM\Module',],
-    'p3s' => ['class' => 'backend\modules\P3S\Module',],
+    'activity' => ['class' => 'backend\modules\Activity\Module',],
     'logistics' => ['class' => 'backend\modules\Logistics\Module',],
-    'database' => ['class' => 'backend\modules\Database\Module',],
-    'resume' => ['class' => 'backend\modules\Resume\Module',],
     'sys' => ['class' => 'backend\modules\Sys\Module',],
     'rbac' => [
         'class' => 'backend\modules\Sys\modules\Rbac\Module',
@@ -40,9 +37,6 @@ return [
     'gridview' => [
         'class' => 'kartik\grid\Module',
         'downloadAction' => '/attachments/export/download',
-    ],
-    'ranking' => [
-        'class' => 'backend\modules\Ranking\Module',
     ],
     'log-reader' => [
         'class' => 'zhuravljov\yii\logreader\Module',
