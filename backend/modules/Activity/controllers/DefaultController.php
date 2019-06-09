@@ -7,9 +7,11 @@ use common\models\c2\entity\ActivityModel;
 use common\models\c2\search\ActivitySearch;
 
 use cza\base\components\controllers\backend\ModelController as Controller;
+use yii\base\InvalidConfigException;
 use yii\helpers\ArrayHelper;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\web\Response;
 
 /**
  * DefaultController implements the CRUD actions for ActivityModel model.
@@ -116,4 +118,24 @@ class DefaultController extends Controller
             throw new NotFoundHttpException('The requested page does not exist.');
         }
     }
+
+    public function actionQrCode($id = null)
+    {
+        try {
+            $qr = Yii::$app->get('qr');
+        } catch (InvalidConfigException $e) {
+            new NotFoundHttpException($e->getMessage());
+        }
+        Yii::$app->response->format = Response::FORMAT_RAW;
+        Yii::$app->response->headers->add('Content-Type', $qr->getContentType());
+
+        $model = $this->retrieveModel($id);
+
+        return $qr
+            // ->useLogo(Yii::getAlias('@frontend') . '/images/logo.jpg')
+            // ->setLogoWidth(10)
+            ->setText(FRONTEND_BASE_URL . '/s/' . $model->seo_code)
+            ->writeString();
+    }
+
 }

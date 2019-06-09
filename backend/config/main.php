@@ -113,6 +113,10 @@ $config = [
             'enableStrictParsing' => false,
             'rules' => require(__DIR__ . '/seo.php'),
         ],
+        'qr' => [
+            'class' => '\Da\QrCode\Component\QrCodeComponent',
+            // ... you can configure more properties of the component here
+        ],
     ],
     'params' => $params,
 ];

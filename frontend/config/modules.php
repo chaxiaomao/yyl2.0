@@ -7,6 +7,9 @@
  */
 
 return [
+    'player' => [
+        'class' => 'frontend\modules\Player\Module',
+    ],
     'log-reader' => [
         'class' => 'zhuravljov\yii\logreader\Module',
         'aliases' => [

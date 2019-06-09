@@ -27,7 +27,7 @@ class CodeGenerator extends \yii\base\Component {
 
     public static function getNumberCodeByDate(\yii\db\ActiveRecord $record) {
         $maxId = $record->find()->max('id') + 1;
-        return sprintf('%1$s%2$s', date("His"), $maxId);
+        return sprintf('%1$s%2$s', date("Hi"), $maxId);
     }
 
 }

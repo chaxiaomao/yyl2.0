@@ -66,7 +66,7 @@ $form = ActiveForm::begin([
                             'msgErrorClass' => 'alert alert-block alert-danger',
                             'defaultPreviewContent' => '<img src="/images/common/default_img.png" alt="' . Yii::t('app.c2', '{s1} avatar', ['s1' => Yii::t('app.c2', 'Product')]) . '" style="width:160px">',
                             'layoutTemplates' => "{main2: '{preview} {browse} {remove}'}",
-                            'allowedFileExtensions' => ["jpg", "png", "gif"],
+                            'allowedFileExtensions' => ["jpg", "png", "gif", "jpeg"],
                             'showUpload' => false,
                             'initialPreview' => $model->getInitialPreview('avatar', \cza\base\models\statics\ImageSize::ORGINAL),
                             'initialPreviewConfig' => $model->getInitialPreview('avatar'),

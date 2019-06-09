@@ -10,11 +10,16 @@ a:hover {
     text-decoration: none;
 }
 .main-bg-color {
-    background-color: #6b6575;
+    background-color: #a488a6;
+}
+
+input:focus{
+    border-color: #a488a6;
+    outline: 0;
 }
 
 .main-font-color {
-    color: #6b6575;
+    color: #fff;
 }
 
 .w100 {

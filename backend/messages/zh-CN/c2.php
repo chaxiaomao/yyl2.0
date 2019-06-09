@@ -107,6 +107,9 @@ return [
     'Inactive' => '停用',
     'User Avatar Add' => '用户添加头像',
     'Search {s1}' => '搜索{s1}',
+    'QR Code' => '二维码',
+    'Browser' => '访问',
+    'Players' => '选手',
     '' => '',
 ];
 

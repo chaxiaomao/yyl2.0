@@ -8,4 +8,5 @@
 
 return [
     's/<s:.*>' => 'site/index',
+    'player/<p:.*>' => 'player/default/index',
 ];

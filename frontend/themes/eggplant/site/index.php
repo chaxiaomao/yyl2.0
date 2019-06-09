@@ -6,6 +6,7 @@
  * Time: 下午 16:13
  */
 
+use yii\helpers\Html;
 use yii\helpers\Url;
 
 // $assets = \frontend\themes\eggplant\AppAsset::register($this);
@@ -15,10 +16,6 @@ use yii\helpers\Url;
 ?>
 
     <style>
-        .item {
-            text-align: center;
-            background: rebeccapurple;
-        }
 
         .players {
             margin-top: 10px;
@@ -32,18 +29,48 @@ use yii\helpers\Url;
         }
 
         .players li div {
-            background-color: #ffe45c;
-            height: 200px;
             text-align: center;
+            position: relative;
+        }
+
+        .players li span {
+            position: absolute;
+            top: 0;
+            left: 0;
+            padding: 4px;
+        }
+
+        .players li p {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            height: 40px;
+            -webkit-box-orient: vertical;
         }
 
         /*.players li:nth-child(2n+1) {*/
-            /*float: right;*/
+        /*float: right;*/
         /*}*/
 
         .players li:nth-child(2n+1) {
             float: left;
         }
+
+        .search-inp {
+            border: 1px solid #eee;
+            border-radius: 4px;
+            height: 43px;
+            margin-right: 10px;
+        }
+
+        .search-btn {
+            width: 100px;
+            height: 43px;
+        }
+
+
+
     </style>
 
     <!-- Swiper -->
@@ -58,6 +85,20 @@ use yii\helpers\Url;
     </div>
 
     <div class="container-fluid" id="dateShow2">
+
+        <?php echo Html::beginForm('/p', 'post', ['style' => 'margin-top:10px']); ?>
+        <?= Html::input('text', 'player_code', '', [
+                'class' => 'search-inp col-xs-8', 'placeholder' => Yii::t('app.c2', 'Input player code or name to search...')
+        ]) ?>
+        <?php
+        echo Html::submitButton(
+            Yii::t('app.c2', 'Search'),
+            ['class' => 'btn btn-warning search-btn col-xs-4']
+        );
+        echo '<div style="clear: both"></div>';
+        echo Html::endForm();
+        ?>
+
         <h4><?= $activityModel->title ?></h4>
         <img class="icon" src="/images/common/clock.png">
         <span id="dataInfoShow_2">活动已结束</span>
@@ -69,11 +110,21 @@ use yii\helpers\Url;
 
     <div class="container-fluid">
         <ul class="players">
+            <?php $rank = 1 ?>
             <?php foreach ($playerModels as $item): ?>
                 <li>
-                    <div>
-                        <img src="<?= $item->getThumbnailUrl() ?>">
-                        <?= $item->title ?>
+                    <div class="main-bg-color main-font-color">
+                        <img class="w100" src="<?= $item->getThumbnailUrl() ?>">
+                        <span class="main-bg-color"><?= Yii::t('app.c2', 'th {s1}', ['s1' => $rank++]) ?></span>
+                        <p><?= $item->title ?></p>
+                        <div style="padding: 4px" class="btn-group btn-group-justified" role="group" aria-label="ab">
+                            <div class="btn-group" role="group">
+                                <button type="button" class="btn btn-warning"><?= Yii::t('app.c2', '{s1} Votes', ['s1' => $item->total_vote_number]) ?></button>
+                            </div>
+                            <div class="btn-group" role="group">
+                                <a href="/player/<?= $item->player_code ?>" class="btn btn-warning"><?= Yii::t('app.c2', 'Vote It') ?></a>
+                            </div>
+                        </div>
                     </div>
                 </li>
             <?php endforeach; ?>
