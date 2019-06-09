@@ -93,6 +93,13 @@ $this->params['breadcrumbs'][] = $this->title;
             // 'is_released',
             [
                 'attribute' => 'is_released',
+                'class' => '\kartik\grid\EditableColumn',
+                'editableOptions' => [
+                    'inputType' => \kartik\editable\Editable::INPUT_DROPDOWN_LIST,
+                    'formOptions' => ['action' => Url::toRoute('editColumn')],
+                    'data' => \common\models\c2\statics\Whether::getHashMap('id', 'label'),
+                    'displayValueConfig' => \common\models\c2\statics\Whether::getHashMap('id', 'label'),
+                ],
                 'value' => function ($model) {
                     return \common\models\c2\statics\Whether::getLabel($model->is_released);
                 },

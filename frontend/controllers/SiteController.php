@@ -4,6 +4,8 @@ namespace frontend\controllers;
 use common\models\c2\entity\ActivityModel;
 use common\models\c2\entity\ActivityPlayerModel;
 use common\models\c2\statics\ActivityPlayerState;
+use common\models\c2\statics\Whether;
+use cza\base\models\statics\EntityModelState;
 use Yii;
 use yii\base\InvalidArgumentException;
 use yii\web\BadRequestHttpException;
@@ -15,6 +17,7 @@ use frontend\models\PasswordResetRequestForm;
 use frontend\models\ResetPasswordForm;
 use frontend\models\SignupForm;
 use frontend\models\ContactForm;
+use yii\web\NotFoundHttpException;
 
 /**
  * Site controller
@@ -75,7 +78,10 @@ class SiteController extends Controller
      */
     public function actionIndex($s = null)
     {
-        $activityModel = ActivityModel::findOne(['seo_code' => $s]);
+        $activityModel = ActivityModel::findOne(['seo_code' => $s, 'is_released' => Whether::TYPE_YES]);
+        if (is_null($activityModel)) {
+            throw new NotFoundHttpException(Yii::t('app.c2', 'Activity disable.'));
+        }
         $playerModels = ActivityPlayerModel::find()->where(['activity_id' => $activityModel->id])
             ->andFilterWhere(['state' => ActivityPlayerState::STATE_CHECKED])
             ->orderBy(['total_vote_number' => SORT_DESC])->limit(4)->all();
