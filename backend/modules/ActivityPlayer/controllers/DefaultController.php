@@ -16,6 +16,29 @@ use yii\filters\VerbFilter;
 class DefaultController extends Controller
 {
     public $modelClass = 'common\models\c2\entity\ActivityPlayerModel';
+
+    public function actions() {
+        return \yii\helpers\ArrayHelper::merge(parent::actions(), [
+            'search-user' => [
+                'class' => '\cza\base\components\actions\common\OptionsListAction',
+                'modelClass' => \common\models\c2\entity\FeUserModel::className(),
+                'listMethod' => 'getOptionsListCallable',
+                'keyAttribute' => 'id',
+                'valueAttribute' => 'username',
+                'queryAttribute' => 'username',
+                'checkAccess' => [$this, 'checkAccess'],
+            ],
+            'search-activity' => [
+                'class' => '\cza\base\components\actions\common\OptionsListAction',
+                'modelClass' => \common\models\c2\entity\ActivityModel::className(),
+                'listMethod' => 'getOptionsListCallable',
+                'keyAttribute' => 'id',
+                'valueAttribute' => 'title',
+                'queryAttribute' => 'title',
+                'checkAccess' => [$this, 'checkAccess'],
+            ],
+        ]);
+    }
     
     /**
      * Lists all ActivityPlayerModel models.

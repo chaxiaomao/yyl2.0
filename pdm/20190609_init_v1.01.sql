@@ -1,10 +1,8 @@
 /*==============================================================*/
 /* DBMS name:      MySQL 5.0                                    */
-/* Created on:     2019/6/9 星期日 下午 1:06:48                      */
+/* Created on:     2019/6/9 星期日 下午 3:55:47                      */
 /*==============================================================*/
 
-
-drop index Index_4 on c2_activity;
 
 drop index Index_3 on c2_activity;
 
@@ -14,35 +12,39 @@ drop index Index_1 on c2_activity;
 
 drop table if exists c2_activity;
 
-drop index Index_3 on c2_activity_entrance;
-
-drop index Index_2 on c2_activity_entrance;
-
-drop index Index_1 on c2_activity_entrance;
-
-drop table if exists c2_activity_entrance;
-
-drop index Index_3 on c2_activity_entrance_message;
-
-drop index Index_2 on c2_activity_entrance_message;
-
-drop index Index_1 on c2_activity_entrance_message;
-
-drop table if exists c2_activity_entrance_message;
-
-drop index Index_4 on c2_activity_entrance_vote_record;
-
-drop index Index_3 on c2_activity_entrance_vote_record;
-
-drop index Index_2 on c2_activity_entrance_vote_record;
-
-drop index Index_1 on c2_activity_entrance_vote_record;
-
-drop table if exists c2_activity_entrance_vote_record;
-
 drop index Index_1 on c2_activity_music;
 
 drop table if exists c2_activity_music;
+
+drop index Index_5 on c2_activity_player;
+
+drop index Index_4 on c2_activity_player;
+
+drop index Index_3 on c2_activity_player;
+
+drop index Index_2 on c2_activity_player;
+
+drop index Index_1 on c2_activity_player;
+
+drop table if exists c2_activity_player;
+
+drop index Index_3 on c2_activity_player_message;
+
+drop index Index_2 on c2_activity_player_message;
+
+drop index Index_1 on c2_activity_player_message;
+
+drop table if exists c2_activity_player_message;
+
+drop index Index_4 on c2_activity_player_vote_record;
+
+drop index Index_3 on c2_activity_player_vote_record;
+
+drop index Index_2 on c2_activity_player_vote_record;
+
+drop index Index_1 on c2_activity_player_vote_record;
+
+drop table if exists c2_activity_player_vote_record;
 
 drop index Index_7 on c2_fe_user;
 
@@ -116,7 +118,7 @@ create table c2_activity
    id                   bigint not null auto_increment,
    type                 tinyint(4) default 1,
    title                varchar(255),
-   label              varchar(255),
+   "label"              varchar(255),
    content              text,
    seo_code             varchar(255),
    start_at             datetime,
@@ -158,28 +160,48 @@ create index Index_2 on c2_activity
 /*==============================================================*/
 create index Index_3 on c2_activity
 (
-   created_by
+   seo_code
 );
 
 /*==============================================================*/
-/* Index: Index_4                                               */
+/* Table: c2_activity_music                                     */
 /*==============================================================*/
-create index Index_4 on c2_activity
+create table c2_activity_music
 (
-   updated_by
+   id                   bigint not null auto_increment,
+   type                 tinyint(4) default 1,
+   name                 varchar(255),
+   "label"              varchar(255),
+   activity_id          bigint,
+   url                  varchar(255),
+   position             int(9) default 0,
+   status               tinyint default 1,
+   created_at           datetime,
+   updated_at           datetime,
+   primary key (id)
 );
 
 /*==============================================================*/
-/* Table: c2_activity_entrance                                  */
+/* Index: Index_1                                               */
 /*==============================================================*/
-create table c2_activity_entrance
+create index Index_1 on c2_activity_music
+(
+   activity_id
+);
+
+/*==============================================================*/
+/* Table: c2_activity_player                                    */
+/*==============================================================*/
+create table c2_activity_player
 (
    id                   bigint not null auto_increment,
    type                 int default 1,
    user_id              bigint,
-   income_number        decimal(10,2) default 0.00,
+   income               decimal(10,2) default 0.00,
+   activity_id          bigint,
    player_code          varchar(255),
    title                varchar(255),
+   "label"              varchar(255),
    content              text,
    mobile_number        varchar(255),
    free_vote_number     int(11) default 0,
@@ -197,7 +219,7 @@ create table c2_activity_entrance
 /*==============================================================*/
 /* Index: Index_1                                               */
 /*==============================================================*/
-create index Index_1 on c2_activity_entrance
+create index Index_1 on c2_activity_player
 (
    user_id
 );
@@ -205,7 +227,7 @@ create index Index_1 on c2_activity_entrance
 /*==============================================================*/
 /* Index: Index_2                                               */
 /*==============================================================*/
-create index Index_2 on c2_activity_entrance
+create index Index_2 on c2_activity_player
 (
    player_code
 );
@@ -213,19 +235,35 @@ create index Index_2 on c2_activity_entrance
 /*==============================================================*/
 /* Index: Index_3                                               */
 /*==============================================================*/
-create index Index_3 on c2_activity_entrance
+create index Index_3 on c2_activity_player
 (
    title
 );
 
 /*==============================================================*/
-/* Table: c2_activity_entrance_message                          */
+/* Index: Index_4                                               */
 /*==============================================================*/
-create table c2_activity_entrance_message
+create index Index_4 on c2_activity_player
+(
+   activity_id
+);
+
+/*==============================================================*/
+/* Index: Index_5                                               */
+/*==============================================================*/
+create index Index_5 on c2_activity_player
+(
+   mobile_number
+);
+
+/*==============================================================*/
+/* Table: c2_activity_player_message                            */
+/*==============================================================*/
+create table c2_activity_player_message
 (
    id                   bigint not null auto_increment,
    type                 tinyint(4) default 1,
-   activity_entrance_id bigint,
+   activity_player_id   bigint,
    user_id              bigint,
    content              text,
    reply_id             bigint default 0,
@@ -239,7 +277,7 @@ create table c2_activity_entrance_message
 /*==============================================================*/
 /* Index: Index_1                                               */
 /*==============================================================*/
-create index Index_1 on c2_activity_entrance_message
+create index Index_1 on c2_activity_player_message
 (
    user_id
 );
@@ -247,28 +285,28 @@ create index Index_1 on c2_activity_entrance_message
 /*==============================================================*/
 /* Index: Index_2                                               */
 /*==============================================================*/
-create index Index_2 on c2_activity_entrance_message
+create index Index_2 on c2_activity_player_message
 (
-   activity_entrance_id
+   activity_player_id
 );
 
 /*==============================================================*/
 /* Index: Index_3                                               */
 /*==============================================================*/
-create index Index_3 on c2_activity_entrance_message
+create index Index_3 on c2_activity_player_message
 (
    reply_id
 );
 
 /*==============================================================*/
-/* Table: c2_activity_entrance_vote_record                      */
+/* Table: c2_activity_player_vote_record                        */
 /*==============================================================*/
-create table c2_activity_entrance_vote_record
+create table c2_activity_player_vote_record
 (
    id                   bigint not null auto_increment,
    type                 tinyint(4) default 1,
    user_id              bigint,
-   activity_entrance_id bigint,
+   activity_player_id   bigint,
    vote_number          int(9) default 0,
    gift_id              bigint,
    order_id             bigint,
@@ -283,7 +321,7 @@ create table c2_activity_entrance_vote_record
 /*==============================================================*/
 /* Index: Index_1                                               */
 /*==============================================================*/
-create index Index_1 on c2_activity_entrance_vote_record
+create index Index_1 on c2_activity_player_vote_record
 (
    user_id
 );
@@ -291,15 +329,15 @@ create index Index_1 on c2_activity_entrance_vote_record
 /*==============================================================*/
 /* Index: Index_2                                               */
 /*==============================================================*/
-create index Index_2 on c2_activity_entrance_vote_record
+create index Index_2 on c2_activity_player_vote_record
 (
-   activity_entrance_id
+   activity_player_id
 );
 
 /*==============================================================*/
 /* Index: Index_3                                               */
 /*==============================================================*/
-create index Index_3 on c2_activity_entrance_vote_record
+create index Index_3 on c2_activity_player_vote_record
 (
    gift_id
 );
@@ -307,35 +345,9 @@ create index Index_3 on c2_activity_entrance_vote_record
 /*==============================================================*/
 /* Index: Index_4                                               */
 /*==============================================================*/
-create index Index_4 on c2_activity_entrance_vote_record
+create index Index_4 on c2_activity_player_vote_record
 (
    order_id
-);
-
-/*==============================================================*/
-/* Table: c2_activity_music                                     */
-/*==============================================================*/
-create table c2_activity_music
-(
-   id                   bigint not null auto_increment,
-   type                 tinyint(4) default 1,
-   name                 varchar(255),
-   label              varchar(255),
-   activity_id          bigint,
-   url                  varchar(255),
-   position             int(9) default 0,
-   status               tinyint default 1,
-   created_at           datetime,
-   updated_at           datetime,
-   primary key (id)
-);
-
-/*==============================================================*/
-/* Index: Index_1                                               */
-/*==============================================================*/
-create index Index_1 on c2_activity_music
-(
-   activity_id
 );
 
 /*==============================================================*/
@@ -482,7 +494,7 @@ create table c2_gift
 (
    id                   bigint not null auto_increment,
    name                 int default 0,
-   label              varchar(255),
+   "label"              varchar(255),
    activity_id          bigint,
    code                 varchar(255),
    obtain_score         decimal(10,2) default 0,
@@ -513,7 +525,7 @@ create table c2_gift_order
    customer_id          bigint,
    pay_method           tinyint(4),
    activity_id          bigint,
-   activity_entrance_id bigint,
+   activity_player_id   bigint,
    discount_rate        decimal(10,2) default 0.00,
    discount_money       decimal(10,2) default 0.00,
    score                int(11),
@@ -541,7 +553,7 @@ create index Index_1 on c2_gift_order
 /*==============================================================*/
 create index Index_2 on c2_gift_order
 (
-   activity_entrance_id
+   activity_player_id
 );
 
 /*==============================================================*/
@@ -576,7 +588,7 @@ create table c2_luck_draw
    id                   bigint not null auto_increment,
    type                 tinyint(4),
    name                 varchar(255),
-   label              varchar(255) default '0',
+   "label"              varchar(255) default '0',
    activity_id          bigint,
    need_score           tinyint(100) default 0,
    created_by           bigint,
@@ -669,7 +681,7 @@ create table c2_prize
    id                   bigint not null auto_increment,
    type                 tinyint(4) default 0,
    name                 bigint,
-   label              varchar(255),
+   "label"              varchar(255),
    luck_draw_id         bigint,
    drawn_rate           tinyint(100) default 0,
    code                 varchar(255),

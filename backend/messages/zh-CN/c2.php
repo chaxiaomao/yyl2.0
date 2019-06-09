@@ -105,6 +105,8 @@ return [
     'Last Login Ip' => '上次登录IP',
     'Active' => '活动',
     'Inactive' => '停用',
+    'User Avatar Add' => '用户添加头像',
+    'Search {s1}' => '搜索{s1}',
     '' => '',
 ];
 

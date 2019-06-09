@@ -48,6 +48,11 @@ $config = [
         'formatter' => [
             'dateFormat' => 'Y-M-d',
         ],
+        // 'response' => [
+        //     'formatters' => [
+        //         'html' => 'cza\base\components\web\HtmlResponseFormatter',
+        //     ]
+        // ],
         'view' => [
             'theme' => [
                 'basePath' => '@app/themes/' . CZA_BACKEND_THEME,

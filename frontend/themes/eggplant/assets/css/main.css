@@ -1,0 +1,90 @@
+
+ol,
+ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+a:hover {
+    text-decoration: none;
+}
+.main-bg-color {
+    background-color: #6b6575;
+}
+
+.main-font-color {
+    color: #6b6575;
+}
+
+.w100 {
+    width: 100%;
+}
+
+table.data-table tr:odd {
+    background: #dcebff;
+}
+
+table.data-table td {
+    line-height: 24px;
+    padding: 3px;
+    vertical-align: top;
+}
+
+table.data-table th {
+    height: 50px;
+    line-height: 50px;
+    padding: 3px;
+    font-size: 20px;
+    text-align: left;
+}
+
+table.data-table .colspan-a {
+    width: 35%;
+}
+
+table.data-table .colspan-b {
+    width: 25%;
+}
+
+table.data-table .colspan-c {
+    width: 40%;
+}
+
+table.data-table td pre {
+    display: block;
+    padding: 5px;
+    border: 1px solid #00caff;
+    background: #f8fcff;
+    text-align: left;
+}
+
+.date-tiem-span, .date-s-span {
+    display: inline-block;
+    font-size: 18px;
+    width: 36px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    color: #fff;
+    border-radius: 5px;
+}
+
+.date-tiem-span {
+    background: #333;
+}
+
+.date-s-span {
+    background: #f00;
+}
+
+.activity-time {
+    display: inline-block;
+    height: 30px;
+    line-height: 30px;
+}
+
+.icon {
+    width: 30px;
+    vertical-align: bottom
+}

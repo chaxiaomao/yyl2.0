@@ -60,7 +60,13 @@ $this->params['breadcrumbs'][] = $this->title;
             //     },
             // ],
             'id',
-            'type',
+            // 'type',
+            [
+                'attribute' => 'type',
+                'value' => function ($model) {
+                    return \common\models\c2\statics\FeUserType::getLabel($model->type);
+                }
+            ],
             // 'attributeset_id',
             'username',
             // 'email:email',
@@ -70,7 +76,13 @@ $this->params['breadcrumbs'][] = $this->title;
             // 'unconfirmed_email:email',
             // 'blocked_at',
             'registration_ip',
-            'registration_src_type',
+            // 'registration_src_type',
+            [
+                'attribute' => 'registration_src_type',
+                'value' => function ($model) {
+                    return \common\models\c2\statics\RegistrationSrcType::getLabel($model->registration_src_type);
+                }
+            ],
             // 'flags',
             // 'level',
             // 'last_login_at',

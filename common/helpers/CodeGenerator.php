@@ -20,4 +20,14 @@ class CodeGenerator extends \yii\base\Component {
         return sprintf('%1$s%2$s%3$s%4$08d', $prefix, date("Ymd"), strtoupper(Yii::$app->security->generateRandomString(2)), $maxId);
     }
 
+    public static function getActivityCodeByDate(\yii\db\ActiveRecord $record, $prefix = '') {
+        $maxId = $record->find()->max('id') + 1;
+        return sprintf('%1$s%2$s%3$s%4$08d', $prefix, date("His"), strtoupper(Yii::$app->security->generateRandomString(2)), $maxId);
+    }
+
+    public static function getNumberCodeByDate(\yii\db\ActiveRecord $record) {
+        $maxId = $record->find()->max('id') + 1;
+        return sprintf('%1$s%2$s', date("His"), $maxId);
+    }
+
 }

@@ -60,8 +60,27 @@ $this->params['breadcrumbs'][] = $this->title;
             //     },
             // ],
             'id',
-            'type',
-            'user_id',
+            // 'type',
+            [
+                'attribute' => 'type',
+                'value' => function ($model) {
+                    return \common\models\c2\statics\ActivityEntryType::getLabel($model->type);
+                }
+            ],
+            // 'activity_id',
+            [
+                'attribute' => 'activity_id',
+                'value' => function ($model) {
+                    return $model->activity->title;
+                }
+            ],
+            // 'user_id',
+            [
+                'attribute' => 'user_id',
+                'value' => function ($model) {
+                    return $model->user->username;
+                }
+            ],
             'income',
             'player_code',
             // 'title',

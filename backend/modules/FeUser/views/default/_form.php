@@ -38,6 +38,44 @@ $form = ActiveForm::begin([
 
     <div class="well">
         <?php
+
+        echo \kartik\builder\Form::widget([
+            'model' => $model,
+            'form' => $form,
+            'columns' => 2,
+            'attributes' => [
+                'avatar' => [
+                    'label' => Yii::t('app.c2', 'User Avatar Add'),
+                    'type' => \kartik\builder\Form::INPUT_WIDGET,
+                    'widgetClass' => '\kartik\widgets\FileInput',
+                    'options' => [
+                        'options' => [
+                            'accept' => 'image/*',
+                        ],
+                        'pluginOptions' => [
+                            'overwriteInitial' => true,
+                            'maxFileSize' => 2000,
+                            'showClose' => false,
+                            'showCaption' => false,
+                            'browseLabel' => '',
+                            'removeLabel' => '',
+                            'browseIcon' => '<i class="glyphicon glyphicon-folder-open"></i>',
+                            'removeIcon' => '<i class="glyphicon glyphicon-remove"></i>',
+                            'removeTitle' => 'Cancel or reset changes',
+                            'elErrorContainer' => '#kv-avatar-errors-1',
+                            'msgErrorClass' => 'alert alert-block alert-danger',
+                            'defaultPreviewContent' => '<img src="/images/common/default_img.png" alt="' . Yii::t('app.c2', '{s1} avatar', ['s1' => Yii::t('app.c2', 'Product')]) . '" style="width:160px">',
+                            'layoutTemplates' => "{main2: '{preview} {browse} {remove}'}",
+                            'allowedFileExtensions' => ["jpg", "png", "gif"],
+                            'showUpload' => false,
+                            'initialPreview' => $model->getInitialPreview('avatar', \cza\base\models\statics\ImageSize::ORGINAL),
+                            'initialPreviewConfig' => $model->getInitialPreview('avatar'),
+                        ],
+                    ],
+                ],
+            ]
+        ]);
+
         echo Form::widget([
             'model' => $model,
             'form' => $form,

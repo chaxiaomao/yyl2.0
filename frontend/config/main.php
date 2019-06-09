@@ -1,5 +1,5 @@
 <?php
-defined('CZA_FRONTEND_THEME') or define('CZA_FRONTEND_THEME', 'sunflower');
+defined('CZA_FRONTEND_THEME') or define('CZA_FRONTEND_THEME', 'eggplant');
 $params = yii\helpers\ArrayHelper::merge(
     require(__DIR__ . '/../../common/config/params.php'), require(__DIR__ . '/params.php')
 );
@@ -66,8 +66,8 @@ return [
         'urlManager' => [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
-            'rules' => [
-            ],
+            'enableStrictParsing' => false,
+            'rules' => require(__DIR__ . '/seo.php'),
         ],
         'view' => [
             'theme' => [

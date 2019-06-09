@@ -18,7 +18,7 @@ class ActivityPlayerSearch extends ActivityPlayerModel
     public function rules()
     {
         return [
-            [['id', 'type', 'user_id', 'free_vote_number', 'gift_vote_number', 'total_vote_number', 'share_number', 'view_number'], 'integer'],
+            [['id', 'type', 'user_id', 'activity_id', 'free_vote_number', 'gift_vote_number', 'total_vote_number', 'share_number', 'view_number'], 'integer'],
             [['income'], 'number'],
             [['player_code', 'title', 'label', 'content', 'mobile_number', 'state', 'status', 'created_at', 'updated_at'], 'safe'],
         ];
@@ -67,6 +67,7 @@ class ActivityPlayerSearch extends ActivityPlayerModel
             'id' => $this->id,
             'type' => $this->type,
             'user_id' => $this->user_id,
+            'activity_id' => $this->activity_id,
             'income' => $this->income,
             'free_vote_number' => $this->free_vote_number,
             'gift_vote_number' => $this->gift_vote_number,

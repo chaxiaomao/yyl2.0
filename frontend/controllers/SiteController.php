@@ -1,6 +1,9 @@
 <?php
 namespace frontend\controllers;
 
+use common\models\c2\entity\ActivityModel;
+use common\models\c2\entity\ActivityPlayerModel;
+use common\models\c2\statics\ActivityPlayerState;
 use Yii;
 use yii\base\InvalidArgumentException;
 use yii\web\BadRequestHttpException;
@@ -70,9 +73,16 @@ class SiteController extends Controller
      *
      * @return mixed
      */
-    public function actionIndex()
+    public function actionIndex($s = null)
     {
-        return $this->render('index');
+        $activityModel = ActivityModel::findOne(['seo_code' => $s]);
+        $playerModels = ActivityPlayerModel::find()->where(['activity_id' => $activityModel->id])
+            ->andFilterWhere(['state' => ActivityPlayerState::STATE_CHECKED])
+            ->orderBy(['total_vote_number' => SORT_DESC])->limit(4)->all();
+        return $this->render('index', [
+            'activityModel' => $activityModel,
+            'playerModels' => $playerModels
+        ]);
     }
 
     /**

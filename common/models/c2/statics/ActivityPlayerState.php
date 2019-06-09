@@ -16,8 +16,8 @@ use Yii;
  */
 class ActivityPlayerState extends AbstractStaticClass
 {
-    const TYPE_CHECKED = 1;  // load in when demand
-    const TYPE_NOT_CHECK = 2;  // load in when demand
+    const STATE_CHECKED = 1;  // load in when demand
+    const STATE_NOT_CHECK = 2;  // load in when demand
 
     protected static $_data;
 
@@ -30,8 +30,8 @@ class ActivityPlayerState extends AbstractStaticClass
     public static function getData($id = '', $attr = '') {
         if (is_null(static::$_data)) {
             static::$_data = [
-                static::TYPE_CHECKED => ['id' => static::TYPE_CHECKED, 'label' => Yii::t('app.c2', 'Checked')],
-                static::TYPE_NOT_CHECK => ['id' => static::TYPE_NOT_CHECK, 'label' => Yii::t('app.c2', 'Not Check')],
+                static::STATE_CHECKED => ['id' => static::STATE_CHECKED, 'label' => Yii::t('app.c2', 'Checked')],
+                static::STATE_NOT_CHECK => ['id' => static::STATE_NOT_CHECK, 'label' => Yii::t('app.c2', 'Not Check')],
             ];
         }
         if ($id !== '' && !empty($attr)) {

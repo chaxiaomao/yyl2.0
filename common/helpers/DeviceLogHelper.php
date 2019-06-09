@@ -43,7 +43,7 @@ class DeviceLogHelper {
         // }
 
         if (true == preg_match("/.+Windows.+/", $agent)) {
-            return RegistrationSrcType::TYPE_WECHAT ;
+            return RegistrationSrcType::TYPE_WEB ;
         } elseif (true == preg_match("/.+Macintosh.+/", $agent)) {
             return RegistrationSrcType::TYPE_WECHAT ;
         } elseif (true == preg_match("/.+iPad.+/", $agent)) {
