@@ -18,8 +18,10 @@ class ActivitySearch extends ActivityModel
     public function rules()
     {
         return [
-            [['id', 'area_limit', 'share_number', 'start_id', 'created_by', 'updated_by'], 'integer'],
-            [['type', 'title', 'label', 'content', 'seo_code', 'start_at', 'end_at', 'vote_freq', 'is_open_draw', 'is_check', 'is_released', 'status', 'created_at', 'updated_at'], 'safe'],
+            [['id', 'area_limit', 'vote_number', 'view_number', 'share_number', 'start_id', 'created_by', 'updated_by'], 'integer'],
+            [['type', 'title', 'label', 'content', 'seo_code', 'start_at', 'end_at',
+                'vote_number_limit', 'is_open_draw', 'is_check', 'is_released', 'status',
+                'created_at', 'updated_at'], 'safe'],
             [['income'], 'number'],
         ];
     }
@@ -68,6 +70,7 @@ class ActivitySearch extends ActivityModel
             'start_at' => $this->start_at,
             'end_at' => $this->end_at,
             'area_limit' => $this->area_limit,
+            'vote_number' => $this->vote_number,
             'share_number' => $this->share_number,
             'income' => $this->income,
             'start_id' => $this->start_id,
@@ -82,7 +85,7 @@ class ActivitySearch extends ActivityModel
             ->andFilterWhere(['like', 'label', $this->label])
             ->andFilterWhere(['like', 'content', $this->content])
             ->andFilterWhere(['like', 'seo_code', $this->seo_code])
-            ->andFilterWhere(['like', 'vote_freq', $this->vote_freq])
+            ->andFilterWhere(['like', 'vote_number_limit', $this->vote_number_limit])
             ->andFilterWhere(['like', 'is_open_draw', $this->is_open_draw])
             ->andFilterWhere(['like', 'is_check', $this->is_check])
             ->andFilterWhere(['like', 'is_released', $this->is_released])

@@ -1,6 +1,6 @@
 /*==============================================================*/
 /* DBMS name:      MySQL 5.0                                    */
-/* Created on:     2019/6/9 星期日 下午 3:55:47                      */
+/* Created on:     2019/6/10 星期一 下午 3:41:50                     */
 /*==============================================================*/
 
 
@@ -123,9 +123,11 @@ create table c2_activity
    seo_code             varchar(255),
    start_at             datetime,
    end_at               datetime,
-   vote_freq            tinyint(100) default 1,
+   vote_number_limit    tinyint(100) default 1,
    area_limit           bigint,
    share_number         int(11) default 0,
+   vote_number          int(11) default 0,
+   view_number          int(11) default 0,
    income               decimal(10,2) default 0.00,
    is_open_draw         tinyint(4) default 0,
    is_check             tinyint(4) default 0,
@@ -357,6 +359,7 @@ create table c2_fe_user
 (
    id                   bigint not null auto_increment,
    type                 int default 0,
+   score                int,
    attributeset_id      bigint default 0,
    username             varchar(255) not null,
    email                varchar(255),
@@ -372,7 +375,7 @@ create table c2_fe_user
    last_login_at        datetime,
    last_login_ip        varchar(255),
    open_id              varchar(255),
-   wechat_union_id      char(10),
+   wechat_union_id      varchar(255),
    wechat_open_id       varchar(255),
    mobile_number        varchar(255),
    sms_receipt          varchar(255),
@@ -707,7 +710,7 @@ create table c2_user_score
 (
    id                   bigint not null auto_increment,
    user_id              bigint,
-   score_num            decimal(10,2),
+   score_number         decimal(10,2),
    status               tinyint default 1,
    created_at           datetime,
    updated_at           datetime,

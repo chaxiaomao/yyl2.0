@@ -19,9 +19,11 @@ use yii\helpers\ArrayHelper;
  * @property string $seo_code
  * @property string $start_at
  * @property string $end_at
- * @property integer $vote_freq
+ * @property integer $vote_number_limit
  * @property integer $area_limit
+ * @property integer $vote_number
  * @property integer $share_number
+ * @property integer $view_number
  * @property string $income
  * @property integer $is_open_draw
  * @property integer $is_check
@@ -60,11 +62,11 @@ class ActivityModel extends \cza\base\models\ActiveRecord
         return [
             [['content'], 'string'],
             [['start_at', 'end_at', 'created_at', 'updated_at'], 'safe'],
-            [['area_limit', 'share_number', 'start_id', 'created_by', 'updated_by'], 'integer'],
+            [['area_limit', 'share_number', 'view_number', 'vote_number', 'start_id', 'created_by', 'updated_by'], 'integer'],
             [['income'], 'number'],
             [['type', 'is_open_draw', 'is_check', 'is_released', 'status'], 'integer', 'max' => 4],
             [['title', 'label', 'seo_code'], 'string', 'max' => 255],
-            [['vote_freq'], 'string', 'max' => 100],
+            [['vote_number_limit'], 'string', 'max' => 100],
         ];
     }
 
@@ -82,8 +84,10 @@ class ActivityModel extends \cza\base\models\ActiveRecord
             'seo_code' => Yii::t('app.c2', 'Seo Code'),
             'start_at' => Yii::t('app.c2', 'Start At'),
             'end_at' => Yii::t('app.c2', 'End At'),
-            'vote_freq' => Yii::t('app.c2', 'Vote Freq'),
+            'vote_number_limit' => Yii::t('app.c2', 'Vote Number Limit'),
             'area_limit' => Yii::t('app.c2', 'Area Limit'),
+            'vote_number' => Yii::t('app.c2', 'Vote Number'),
+            'view_number' => Yii::t('app.c2', 'View Number'),
             'share_number' => Yii::t('app.c2', 'Share Number'),
             'income' => Yii::t('app.c2', 'Income'),
             'is_open_draw' => Yii::t('app.c2', 'Is Open Draw'),

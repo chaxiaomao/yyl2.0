@@ -11,7 +11,6 @@ $this->title = $name;
 ?>
 <div class="site-error container-fluid">
 
-<!--    <h1>--><?//= Html::encode($this->title) ?><!--</h1>-->
 
     <p></p>
     <div class="alert alert-danger">

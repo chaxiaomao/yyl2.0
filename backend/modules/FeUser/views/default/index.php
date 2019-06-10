@@ -68,6 +68,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 }
             ],
             // 'attributeset_id',
+            'score',
             'username',
             // 'email:email',
             // 'password_hash',

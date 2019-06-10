@@ -22,6 +22,7 @@ class Eggplant extends AssetBundle
         'js/jquery.rotate.min.js',
         'js/swiper.min.js',
         'js/leftTime.min.js',
+        'https://res.wx.qq.com/open/js/jweixin-1.0.0.js',  // wechat js SDK
     ];
 
     public $depends = [

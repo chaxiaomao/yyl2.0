@@ -18,6 +18,7 @@ return [
         'cache' => [
             'class' => 'yii\caching\FileCache',
         ],
+        'redis' => require(__DIR__ . '/redis.php'),
         'log' => [
             'traceLevel' => YII_DEBUG ? 3 : 0,
             'targets' => [

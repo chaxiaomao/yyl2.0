@@ -6,6 +6,8 @@ use common\models\c2\entity\ActivityPlayerModel;
 use common\models\c2\statics\ActivityPlayerState;
 use common\models\c2\statics\Whether;
 use cza\base\models\statics\EntityModelState;
+use frontend\components\actions\ActivityShareAction;
+use frontend\components\behaviors\WechatAuthBehavior;
 use Yii;
 use yii\base\InvalidArgumentException;
 use yii\web\BadRequestHttpException;
@@ -52,6 +54,9 @@ class SiteController extends Controller
                     'logout' => ['post'],
                 ],
             ],
+            'wechatFilter' => [
+                'class' => WechatAuthBehavior::className()
+            ]
         ];
     }
 
@@ -68,6 +73,9 @@ class SiteController extends Controller
                 'class' => 'yii\captcha\CaptchaAction',
                 'fixedVerifyCode' => YII_ENV_TEST ? 'testme' : null,
             ],
+            'activity-share' => [
+                'class' => ActivityShareAction::className(),
+            ],
         ];
     }
 
@@ -82,6 +90,7 @@ class SiteController extends Controller
         if (is_null($activityModel)) {
             throw new NotFoundHttpException(Yii::t('app.c2', 'Activity disable.'));
         }
+        $activityModel->updateCounters(['view_number' => 1]);
         $playerModels = ActivityPlayerModel::find()->where(['activity_id' => $activityModel->id])
             ->andFilterWhere(['state' => ActivityPlayerState::STATE_CHECKED])
             ->orderBy(['total_vote_number' => SORT_DESC])->limit(4)->all();

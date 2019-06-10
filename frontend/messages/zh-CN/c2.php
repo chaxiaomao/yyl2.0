@@ -63,7 +63,7 @@ return [
     'Search' => '搜索',
     'Input player code or name to search...' => '输入选手编号或名字搜索...',
     '{s1} Votes' => '{s1}票',
-    'Vote It' => '给TA投票',
+    'Vote It' => '投票',
     '' => '',
 ];
 

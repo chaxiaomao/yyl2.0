@@ -18,7 +18,7 @@ class FeUserSearch extends FeUserModel
     public function rules()
     {
         return [
-            [['id', 'type', 'attributeset_id', 'flags', 'district_id', 'province_id', 'city_id', 'created_by', 'updated_by', 'position'], 'integer'],
+            [['id', 'type', 'attributeset_id', 'score', 'flags', 'district_id', 'province_id', 'city_id', 'created_by', 'updated_by', 'position'], 'integer'],
             [['username', 'email', 'password_hash', 'auth_key', 'confirmed_at', 'unconfirmed_email', 'blocked_at', 'registration_ip', 'registration_src_type', 'level', 'last_login_at', 'last_login_ip', 'open_id', 'wechat_union_id', 'wechat_open_id', 'mobile_number', 'sms_receipt', 'access_token', 'password_reset_token', 'status', 'created_at', 'updated_at'], 'safe'],
         ];
     }
@@ -66,6 +66,7 @@ class FeUserSearch extends FeUserModel
             'id' => $this->id,
             'type' => $this->type,
             'attributeset_id' => $this->attributeset_id,
+            'score' => $this->score,
             'confirmed_at' => $this->confirmed_at,
             'blocked_at' => $this->blocked_at,
             'flags' => $this->flags,

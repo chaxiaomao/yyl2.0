@@ -18,6 +18,10 @@ return [
     'controllerNamespace' => 'frontend\controllers',
     'modules' => require(__DIR__ . '/modules.php'),
     'components' => [
+        'wechat' => [
+            'class' => common\components\Wechat\Wechat::className(),
+            'agentReturnUrl' => "{$params['config']['wechat']['authReturnUrl']}?r={$params['config']['wechat']['hostUrl']}{$params['config']['wechat']['returnRoute']}",
+        ],
         'formatter' => [
             'dateFormat' => 'Y-M-d',
         ],

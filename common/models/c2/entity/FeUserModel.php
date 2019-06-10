@@ -17,6 +17,7 @@ use yii\web\IdentityInterface;
  * @property string $id
  * @property integer $type
  * @property string $attributeset_id
+ * @property string $score
  * @property string $username
  * @property string $email
  * @property string $password_hash
@@ -96,7 +97,7 @@ class FeUserModel extends \cza\base\models\ActiveRecord implements IdentityInter
             // [['type', 'registration_src_type', 'level', 'status'], 'string', 'max' => 4],
             // [['username', 'email', 'password_hash', 'auth_key', 'unconfirmed_email', 'registration_ip', 'last_login_ip', 'open_id', 'wechat_open_id', 'mobile_number', 'sms_receipt', 'access_token', 'password_reset_token'], 'string', 'max' => 255],
             // [['wechat_union_id'], 'string', 'max' => 10],
-            [['registration_src_type', 'type', 'attributeset_id', 'flags', 'created_by', 'updated_by', 'status', 'position', 'province_id', 'city_id', 'district_id'], 'integer'],
+            [['registration_src_type', 'score', 'type', 'attributeset_id', 'flags', 'created_by', 'updated_by', 'status', 'position', 'province_id', 'city_id', 'district_id'], 'integer'],
             [['username'], 'required'],
             [['email'], 'email'],
             [['wechat_open_id', 'username', 'mobile_number', 'email'], FeUserUniqueValidator::className(), 'targetClass' => FeUserModel::className(), 'message' => Yii::t('app.c2', '{attribute} "{value}" has already been taken.')],
@@ -116,6 +117,7 @@ class FeUserModel extends \cza\base\models\ActiveRecord implements IdentityInter
             'id' => Yii::t('app.c2', 'ID'),
             'type' => Yii::t('app.c2', 'Type'),
             'attributeset_id' => Yii::t('app.c2', 'Attributeset ID'),
+            'score' => Yii::t('app.c2', 'Score'),
             'username' => Yii::t('app.c2', 'Username'),
             'email' => Yii::t('app.c2', 'Email'),
             'password_hash' => Yii::t('app.c2', 'Password Hash'),

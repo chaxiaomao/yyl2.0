@@ -55,6 +55,8 @@ class Wechat extends BaseModel {
     public $returnRoute = '/authorize/wechat';
     public $agentReturnUrl = "";
 
+    public $urlParams = "";
+
     /**
      *
      * @param string/array $config
@@ -166,6 +168,12 @@ class Wechat extends BaseModel {
      */
     public function getIsWechat() {
         return strpos($_SERVER["HTTP_USER_AGENT"], "MicroMessenger") !== false;
+    }
+
+    public function setUrlParams($params)
+    {
+        $this->urlParams = $params;
+        return $this;
     }
 
 }

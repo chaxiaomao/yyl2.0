@@ -69,9 +69,10 @@ return [
     'Label' => '标签',
     'Start At' => '开始时间',
     'End At' => '结束时间',
-    'Vote Freq' => '投票限制',
+    'Vote Number Limit' => '投票次数限制',
     'Area Limit' => '地区限制',
-    'Share Number' => '分享数量',
+    'Vote Number' => '参与投票数量',
+    'Share Number' => '活动分享数量',
     'Income' => '收入',
     'Is Open Draw' => '是否开启抽奖',
     'Is Check' => '是否审核',
@@ -110,6 +111,7 @@ return [
     'QR Code' => '二维码',
     'Browser' => '访问',
     'Players' => '选手',
+    'Score' => '积分',
     '' => '',
 ];
 

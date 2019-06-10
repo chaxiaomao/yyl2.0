@@ -68,9 +68,11 @@ $this->params['breadcrumbs'][] = $this->title;
                 'seo_code',
                 'start_at',
                 'end_at',
-                // 'vote_freq',
+                // 'vote_number_limit',
                 // 'area_limit',
+                'vote_number',
                 'share_number',
+                'view_number',
                 'income',
                 // 'is_open_draw',
                 [

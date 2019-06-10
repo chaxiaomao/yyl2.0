@@ -15,9 +15,9 @@
 use yii\helpers\Html;
 \frontend\themes\eggplant\Eggplant::register($this);
 
-// if (Yii::$app->wechat->isWechat) {
-//     $this->render("partials/_wechat_js");
-// }
+if (Yii::$app->wechat->isWechat) {
+    $this->render("partials/_wechat_js");
+}
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
