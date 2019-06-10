@@ -55,8 +55,6 @@ class Wechat extends BaseModel {
     public $returnRoute = '/authorize/wechat';
     public $agentReturnUrl = "";
 
-    public $urlParams = "";
-
     /**
      *
      * @param string/array $config
@@ -81,8 +79,10 @@ class Wechat extends BaseModel {
             return Yii::$app->response->redirect($this->getReturnUrl());
         } else {
             // redirect to wechat authorize page
-            $returnUrl = empty($this->agentReturnUrl) ? Url::toRoute($this->returnRoute, true) : $this->agentReturnUrl;
-            $returnUrl = $this->regular($returnUrl)?$this->regular($returnUrl):$returnUrl;
+            // $returnUrl = empty($this->agentReturnUrl) ? Url::toRoute($this->returnRoute, true) : $this->agentReturnUrl;
+            // $returnUrl = $this->regular($returnUrl)?$this->regular($returnUrl):$returnUrl;
+            // $this->setReturnUrl($returnUrl);
+            $returnUrl = FRONTEND_BASE_URL . Yii::$app->request->url;
             $this->setReturnUrl($returnUrl);
             $targetUrl = $this->app->oauth->scopes(['snsapi_userinfo'])->redirect($returnUrl)->getTargetUrl();
             Yii::info('returnUrl:' . $returnUrl, 'debug');
@@ -168,12 +168,6 @@ class Wechat extends BaseModel {
      */
     public function getIsWechat() {
         return strpos($_SERVER["HTTP_USER_AGENT"], "MicroMessenger") !== false;
-    }
-
-    public function setUrlParams($params)
-    {
-        $this->urlParams = $params;
-        return $this;
     }
 
 }

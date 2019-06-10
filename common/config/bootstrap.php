@@ -2,7 +2,8 @@
 
 if (YII_ENV_DEV) {
     define('BACKEND_BASE_URL', 'http://be-yyl.tunnel.echomod.cn');
-    define('FRONTEND_BASE_URL', 'http://fe-yyl.tunnel.echomod.cn');
+    // define('FRONTEND_BASE_URL', 'http://fe-yyl.tunnel.echomod.cn');
+    define('FRONTEND_BASE_URL', 'http://cxj.cross.echosite.cn');
     define('ESHOP_BASE_URL', 'http://eshop-apollo-pre.local.bulletelc.com');
     define('IMAGE_BASE_URL', 'http://img-yyl.tunnel.echomod.cn');
 }

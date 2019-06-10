@@ -29,7 +29,8 @@ return [
             'csrfParam' => '_csrf-frontend',
         ],
         'user' => [
-            'identityClass' => 'common\models\User',
+            // 'identityClass' => 'common\models\User',
+            'identityClass' => 'common\models\c2\entity\FeUserModel',
             'enableAutoLogin' => true,
             'identityCookie' => ['name' => '_identity-frontend', 'httpOnly' => true],
         ],

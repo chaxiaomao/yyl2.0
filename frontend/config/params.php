@@ -2,7 +2,7 @@
 return [
     'adminEmail' => 'admin@example.com',
     'wechat' => [
-        'code' => 'SC-YYL-01',
+        'code' => 'SC-YYL-02',
         'authReturnUrl' => FRONTEND_BASE_URL, // authorized url
         'hostUrl' => FRONTEND_BASE_URL,
         'returnRoute' => '/',
