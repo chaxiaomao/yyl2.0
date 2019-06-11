@@ -93,6 +93,14 @@ class DefaultController extends Controller
         $model = $this->retrieveModel($id);
         
         if ($model->load(Yii::$app->request->post())) {
+            if ($model->isNewRecord) {
+                if ($model->save()) {
+                    Yii::$app->session->setFlash($model->getMessageName(), [Yii::t('app.c2', 'Saved successful.')]);
+                    return $this->redirect('/activity/default/edit?id=' . $model->id);
+                } else {
+                    Yii::$app->session->setFlash($model->getMessageName(), $model->errors);
+                }
+            }
             if ($model->save()) {
                 Yii::$app->session->setFlash($model->getMessageName(), [Yii::t('app.c2', 'Saved successful.')]);
             } else {

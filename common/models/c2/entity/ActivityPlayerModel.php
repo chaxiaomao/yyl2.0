@@ -144,4 +144,13 @@ class ActivityPlayerModel extends \cza\base\models\ActiveRecord
         // }
     }
 
+    public function getPhotos() {
+        $albums = $this->attachmentImages;
+        $albumsUrl = [];
+        foreach ($albums as $album) {
+            $albumsUrl[] = $album->getOriginalUrl();
+        }
+        return $albumsUrl;
+    }
+
 }

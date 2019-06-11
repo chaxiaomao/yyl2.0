@@ -169,6 +169,21 @@ $form = ActiveForm::begin([
                 'status' => ['type' => Form::INPUT_DROPDOWN_LIST, 'items' => EntityModelStatus::getHashMap('id', 'label')],
             ]
         ]);
+
+        echo Form::widget([
+            'model' => $model,
+            'form' => $form,
+            //            'columns' => 2,
+            'attributes' => [
+                'content' => ['type' => Form::INPUT_WIDGET,
+                    'widgetClass' => 'common\widgets\ueditor\Ueditor',
+                    'options' => [
+                        // 'class' => 'col-sm-6 pull-left',
+                    ],
+                ],
+            ],
+        ]);
+
         echo Html::beginTag('div', ['class' => 'box-footer']);
         echo Html::submitButton('<i class="fa fa-save"></i> ' . Yii::t('app.c2', 'Save'), ['type' => 'button', 'class' => 'btn btn-primary pull-right']);
         echo Html::a('<i class="fa fa-arrow-left"></i> ' . Yii::t('app.c2', 'Go Back'), ['index'], ['data-pjax' => '0', 'class' => 'btn btn-default pull-right', 'title' => Yii::t('app.c2', 'Go Back'),]);

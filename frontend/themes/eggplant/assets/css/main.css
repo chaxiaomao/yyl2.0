@@ -10,12 +10,26 @@ a:hover {
     text-decoration: none;
 }
 .main-bg-color {
-    background-color: #a488a6;
+    /*background-color: #a488a6;*/
+    /*background-color: #000000;*/
+    background-image: linear-gradient(to top, #fbc2eb 0%, #a18cd1 100%);
+}
+
+.reverse-main-bg-color {
+    /*background-color: #a488a6;*/
+    /*background-color: #000000;*/
+    background-image: linear-gradient(to top, #a18cd1 0%, #fbc2eb 100%);
 }
 
 input:focus{
-    border-color: #a488a6;
+    /*border-color: #a488a6;*/
+    border-color: #000000;
     outline: 0;
+}
+
+.white-bg {
+    /*background-color: #ffffff;*/
+    color: #ffffff;
 }
 
 .main-font-color {
@@ -92,4 +106,113 @@ table.data-table td pre {
 .icon {
     width: 30px;
     vertical-align: bottom
+}
+
+.players {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.players li {
+    width: 50%;
+    display: inline-block;
+    padding-top: 10px;
+}
+
+.players li:nth-child(2n+1) {
+    float: left;
+    padding-left: 0;
+    padding-right: 10px;
+}
+
+.players li div {
+    position: relative;
+}
+
+.player-photo {
+    text-align: center;
+    height: 160px;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.player-photo img {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.players li div p {
+}
+
+@media screen and (min-width: 1000px) {
+    body {
+        width: 900px;
+        margin: 0 auto;
+    }
+    .player-photo {
+        height: 360px;
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+}
+
+@media screen and (min-width: 720px) {
+    /*body {*/
+    /*width: 600px;*/
+    /*margin: 0 auto;*/
+    /*}*/
+    .player-photo {
+        height: 360px;
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+}
+
+.players li span {
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 4px;
+}
+
+.players li p {
+    height: 40px;
+    padding: 4px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+
+.search-inp {
+    width: 100%;
+    height: 43px;
+    padding: 10px;
+    border: 1px solid #eee;
+    border-radius: 4px;
+    /*margin-right: 10px;*/
+}
+
+.search-btn {
+    width: 100%;
+    height: 43px;
+}
+
+.statics {
+    /*border-top: 4px solid #eee;*/
+    /*border-bottom: 4px solid #eee;*/
+    margin: 10px 0;
+    text-align: center
+}
+
+.statics-item {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.content img {
+    width: 100%;
 }

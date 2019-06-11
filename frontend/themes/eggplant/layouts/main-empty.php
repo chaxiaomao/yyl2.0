@@ -14,7 +14,7 @@
 
 use yii\helpers\Html;
 \frontend\themes\eggplant\Eggplant::register($this);
-
+// \frontend\assets\AppAsset::register($this);
 if (Yii::$app->wechat->isWechat) {
     // $this->render("partials/_wechat_js");
 }
@@ -51,32 +51,10 @@ if (Yii::$app->wechat->isWechat) {
         margin-bottom: 42px;
         background-attachment: fixed;
     }
-    .bottom {
-        width: 100%;
-        position: fixed;
-        z-index: 99;
-        bottom: 0;
-        left: 0;
-        text-align: center;
-        background-color: #ffffff;
-    }
-    .bottom a {
-        height: 42px;
-        line-height: 42px;
-    }
 </style>
 <body>
 <?php $this->beginBody() ?>
 <?= $content ?>
-<div class="container-fluid bottom">
-    <div class="row">
-        <?= Html::a(Yii::t('app.c2', 'Rank'), ['/', 's' => 1], ['class' => 'col-xs-3']) ?>
-        <?= Html::a(Yii::t('app.c2', 'Draw'), '/', ['class' => 'col-xs-3']) ?>
-        <?= Html::a(Yii::t('app.c2', 'Apply'), '/', ['class' => 'col-xs-3']) ?>
-        <?= Html::a(Yii::t('app.c2', 'Mine'), '/', ['class' => 'col-xs-3']) ?>
-    </div>
-</div>
-
 
 <?php $this->endBody() ?>
 </body>

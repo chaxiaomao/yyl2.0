@@ -40,4 +40,8 @@ class Eggplant extends AssetBundle
         parent::init();
     }
 
+    public $publishOptions = [
+        'forceCopy' => YII_DEBUG,
+    ];
+
 }

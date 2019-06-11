@@ -37,6 +37,35 @@ class DefaultController extends Controller
                 'queryAttribute' => 'title',
                 'checkAccess' => [$this, 'checkAccess'],
             ],
+            'ueditor' => [
+                'class' => 'common\widgets\ueditor\UeditorAction',
+                'config' => [
+                    //上传图片配置
+                    'entity_class' => \common\models\c2\entity\ActivityModel::className(),
+                    'entity_attribute' => 'content',
+                    'imageUrlPrefix' => BACKEND_BASE_URL, /* 图片访问路径前缀 */
+                    // 'imagePathFormat' => "/uploads/ueditor/{pathHash:default}/{id}/{CachingPath}/{hash}", /* 上传保存路径,可以自定义保存路径和文件名格式 */
+                    'imagePathFormat' => "/uploads/ueditor/{pathHash:default}/{id}/{CachingPath}/{hash}", /* 上传保存路径,可以自定义保存路径和文件名格式 */
+                ]
+            ],
+            'images-sort' => [
+                'class' => \cza\base\components\actions\common\AttachmentSortAction::className(),
+                'attachementClass' => \common\models\c2\entity\EntityAttachmentImage::className(),
+            ],
+            'images-delete' => [
+                'class' => \cza\base\components\actions\common\AttachmentDeleteAction::className(),
+                'attachementClass' => \common\models\c2\entity\EntityAttachmentImage::className(),
+            ],
+            'images-upload' => [
+                'class' => \cza\base\components\actions\common\AttachmentUploadAction::className(),
+                'attachementClass' => \common\models\c2\entity\EntityAttachmentImage::className(),
+                'entityClass' => \common\models\c2\entity\ActivityPlayerModel::className(),
+                'entityAttribute' => 'album',
+                // 'onComplete' => function ($filename, $params) {
+                //     Yii::info($filename);
+                //     Yii::info($params);
+                // }
+            ],
         ]);
     }
     
@@ -78,6 +107,14 @@ class DefaultController extends Controller
         $model = $this->retrieveModel($id);
         
         if ($model->load(Yii::$app->request->post())) {
+            if ($model->isNewRecord) {
+                if ($model->save()) {
+                    Yii::$app->session->setFlash($model->getMessageName(), [Yii::t('app.c2', 'Saved successful.')]);
+                    return $this->redirect('/activity-player/default/edit?id=' . $model->id);
+                } else {
+                    Yii::$app->session->setFlash($model->getMessageName(), $model->errors);
+                }
+            }
             if ($model->save()) {
                 Yii::$app->session->setFlash($model->getMessageName(), [Yii::t('app.c2', 'Saved successful.')]);
             } else {

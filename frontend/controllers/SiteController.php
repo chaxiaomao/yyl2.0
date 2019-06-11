@@ -7,6 +7,7 @@ use common\models\c2\statics\ActivityPlayerState;
 use common\models\c2\statics\Whether;
 use cza\base\models\statics\EntityModelState;
 use frontend\components\actions\ActivityShareAction;
+use frontend\components\actions\VoteAction;
 use frontend\components\behaviors\WechatAuthBehavior;
 use Yii;
 use yii\base\InvalidArgumentException;
@@ -54,9 +55,9 @@ class SiteController extends Controller
                     'logout' => ['post'],
                 ],
             ],
-            'wechatFilter' => [
-                'class' => WechatAuthBehavior::className()
-            ]
+            // 'wechatFilter' => [
+            //     'class' => WechatAuthBehavior::className()
+            // ]
         ];
     }
 
@@ -67,6 +68,7 @@ class SiteController extends Controller
     {
         return [
             'error' => [
+                'layout' => 'main-empty',
                 'class' => 'yii\web\ErrorAction',
             ],
             'captcha' => [
@@ -75,6 +77,9 @@ class SiteController extends Controller
             ],
             'activity-share' => [
                 'class' => ActivityShareAction::className(),
+            ],
+            'vote' => [
+                'class' => VoteAction::className(),
             ],
         ];
     }
