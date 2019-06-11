@@ -4,6 +4,7 @@ namespace common\models\c2\entity;
 
 use backend\models\c2\entity\rbac\BeUser;
 use common\helpers\CodeGenerator;
+use cza\base\models\statics\EntityModelStatus;
 use Yii;
 use yii\behaviors\BlameableBehavior;
 use yii\helpers\ArrayHelper;
@@ -147,6 +148,24 @@ class ActivityModel extends \cza\base\models\ActiveRecord
             $albumsUrl[] = $album->getOriginalUrl();
         }
         return $albumsUrl;
+    }
+
+    public static function getAllActivities()
+    {
+        $first = ['0' => Yii::t('app.c2', 'Apply To All Activities')];
+        $items = self::getHashMap('id', 'title');
+        return ArrayHelper::merge($first, $items);
+    }
+
+    public function getActivityGifts()
+    {
+        $gifts = GiftModel::find()->where(['activity_id' => 0, 'status' => EntityModelStatus::STATUS_ACTIVE])->all();
+        return ArrayHelper::merge($gifts, $this->getGifts()->all());
+    }
+
+    public function getGifts()
+    {
+        return $this->hasMany(GiftModel::className(), ['activity_id' => 'id']);
     }
 
 }

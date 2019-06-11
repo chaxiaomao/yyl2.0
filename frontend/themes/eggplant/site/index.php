@@ -39,19 +39,19 @@ $this->title = $activityModel->title;
 
     <div class="row statics white-bg">
         <div class="col-xs-4">
-            <div class="statics-item">
+            <div>
                 <p><?= Yii::t('app.c2', 'Total View') ?></p>
                 <?= $activityModel->view_number ?>
             </div>
         </div>
         <div class="col-xs-4">
-            <div class="statics-item">
+            <div>
                 <p><?= Yii::t('app.c2', 'Total Vote') ?></p>
                 <?= $activityModel->vote_number ?>
             </div>
         </div>
         <div class="col-xs-4">
-            <div class="statics-item">
+            <div>
                 <p><?= Yii::t('app.c2', 'Total Share') ?></p>
                 <?= $activityModel->share_number ?>
             </div>

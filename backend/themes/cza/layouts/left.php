@@ -41,6 +41,13 @@ use yii\helpers\Html;
                         ]
                     ],
                     [
+                        'label' => Yii::t('app.c2', '{s1} Management', ['s1' => Yii::t('app.c2', 'Finance')]), 'icon' => 'fa fa-circle-o', 'url' => ['#'], 'options' => ['class' => 'treeview'],
+                        'items' => [
+                            ['label' => Yii::t('app.c2', '{s1} Management', ['s1' => Yii::t('app.c2', 'Gift')]), 'icon' => 'fa fa-circle-o', 'url' => ['/gift']],
+                            ['label' => Yii::t('app.c2', '{s1} Management', ['s1' => Yii::t('app.c2', 'Gift Order')]), 'icon' => 'fa fa-circle-o', 'url' => ['/gift-order']],
+                        ]
+                    ],
+                    [
                         'label' => Yii::t('app.c2', 'Logistics'), 'visible' => \Yii::$app->user->can('P_Logistics'), 'icon' => 'fa fa-circle-o', 'url' => ['#'], 'options' => ['class' => 'treeview'],
                         'items' => [
                             ['label' => Yii::t('app.c2', 'Region'), 'icon' => 'fa fa-circle-o', 'url' => ['/logistics/region']],

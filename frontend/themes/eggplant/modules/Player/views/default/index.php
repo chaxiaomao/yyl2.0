@@ -8,7 +8,14 @@
     <div class="container-fluid" style="margin-top: 10px">
         <div class="panel" style="margin-bottom: 0;">
             <div class="panel-body">
-                <p style="font-weight: bold;color: orange"><?= Yii::t('app.c2', 'ID:') . $playerModel->player_code; ?></p>
+                <div class="row">
+                    <p id="total-vote-number" class="col-xs-6" style="font-weight: bold;color: orange">
+                        <?= Yii::t('app.c2', 'ID:') . $playerModel->player_code; ?>
+                    </p>
+                    <p class="col-xs-6" style="font-weight: bold;color: orange;text-align: right">
+                        <?= $playerModel->total_vote_number . Yii::t('app.c2', 'Vote') ?>
+                    </p>
+                </div>
                 <?= $playerModel->title; ?>
             </div>
         </div>
@@ -17,25 +24,19 @@
     <div class="container-fluid" style="margin-top: 10px">
         <div class="panel" style="margin-bottom: 0;">
             <div class="row statics">
-                <div class="col-xs-3">
-                    <div class="statics-item">
-                        <p><?= Yii::t('app.c2', 'Vote Number') ?></p>
-                        <span id="total-vote-number"><?= $playerModel->total_vote_number ?></span>
-                    </div>
-                </div>
-                <div class="col-xs-3">
+                <div class="col-xs-4">
                     <div class="statics-item">
                         <p><?= Yii::t('app.c2', 'Diff Before Player Vote') ?></p>
                         <?= $playerModel->total_vote_number ?>
                     </div>
                 </div>
-                <div class="col-xs-3">
+                <div class="col-xs-4">
                     <div class="statics-item">
                         <p><?= Yii::t('app.c2', 'Current Rank') ?></p>
                         <?= $playerModel->share_number ?>
                     </div>
                 </div>
-                <div class="col-xs-3">
+                <div class="col-xs-4">
                     <div class="statics-item">
                         <p><?= Yii::t('app.c2', 'Diff After Player Vote') ?></p>
                         <?= $playerModel->share_number ?>
@@ -57,6 +58,11 @@
                     <button type="button" id="btn-gift-vote"
                             class="btn btn-warning"><?= Yii::t('app.c2', 'Gift Vote') ?></button>
                 </div>
+            </div>
+
+            <div id="gifts" style="display: none;">
+                <?= \frontend\widgets\GiftsGridView::widget(['activityModel' => $playerModel->activity]) ?>
+                <div style="clear: both"></div>
             </div>
         </div>
 
@@ -101,8 +107,9 @@ $('#btn-free-vote').on('click', function(e) {
 })
 
 $('#btn-gift-vote').on('click', function(e) {
-  $('#content-modal').find('.modal-title').html('活动重在参与，意在宣传推广，不提倡购买!<br>温馨提示：加油支付失败时，请重新登陆后再次为Ta加油');
-  $('#content-modal').modal('show').find('.modal-body').html('加载中...').load();
+  // $('#content-modal').find('.modal-title').html('活动重在参与，意在宣传推广，不提倡购买!<br>温馨提示：加油支付失败时，请重新登陆后再次为Ta加油');
+  // $('#content-modal').modal('show').find('.modal-body').html('加载中...').load();
+  $('#gifts').toggle();
 })
 
 JS;

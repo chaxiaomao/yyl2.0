@@ -45,7 +45,7 @@ $form = ActiveForm::begin([
             'columns' => 2,
             'attributes' => [
                 'avatar' => [
-                    'label' => Yii::t('app.c2', 'User Avatar Add'),
+                    'label' => Yii::t('app.c2', 'Photo Add'),
                     'type' => \kartik\builder\Form::INPUT_WIDGET,
                     'widgetClass' => '\kartik\widgets\FileInput',
                     'options' => [
@@ -83,7 +83,7 @@ $form = ActiveForm::begin([
             'attributes' => [
                 'type' => ['type' => Form::INPUT_DROPDOWN_LIST, 'items' => \common\models\c2\statics\FeUserType::getHashMap('id', 'label')],
                 // 'attributeset_id' => ['type' => Form::INPUT_TEXT, 'options' => ['placeholder' => $model->getAttributeLabel('attributeset_id')]],
-                'score' => ['type' => Form::INPUT_TEXT, 'options' => ['placeholder' => $model->getAttributeLabel('username'), 'type' => 'number']],
+                'score' => ['type' => Form::INPUT_TEXT, 'options' => ['placeholder' => $model->getAttributeLabel('score'), 'type' => 'number']],
                 'username' => ['type' => Form::INPUT_TEXT, 'options' => ['placeholder' => $model->getAttributeLabel('username')]],
                 // 'email' => ['type' => Form::INPUT_TEXT, 'options' => ['placeholder' => $model->getAttributeLabel('email')]],
                 // 'password_hash' => ['type' => Form::INPUT_TEXT, 'options' => ['placeholder' => $model->getAttributeLabel('password_hash')]],

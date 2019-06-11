@@ -79,9 +79,10 @@ return [
     'Player disable.' => '选手审核中或不存在。',
     'Vote Number' => '票数',
     'Current Rank' => '排名',
-    'Diff Before Player Vote' => '前一名相差',
-    'Diff After Player Vote' => '后一名相差',
+    'Diff Before Player Vote' => '前一名差',
+    'Diff After Player Vote' => '后一名差',
     'Tips' => '提示',
+    'Vote' => '票',
     '' => '',
 ];
 

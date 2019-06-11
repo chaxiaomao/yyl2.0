@@ -10,7 +10,7 @@ return [
     'activity' => ['class' => 'backend\modules\Activity\Module',],
     'activity-player' => ['class' => 'backend\modules\ActivityPlayer\Module',],
     'fe-user' => ['class' => 'backend\modules\FeUser\Module',],
-
+    'gift' => ['class' => 'backend\modules\Gift\\Module',],
     'logistics' => ['class' => 'backend\modules\Logistics\Module',],
     'sys' => ['class' => 'backend\modules\Sys\Module',],
     'rbac' => [

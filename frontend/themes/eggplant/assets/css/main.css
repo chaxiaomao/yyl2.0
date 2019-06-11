@@ -216,3 +216,25 @@ table.data-table td pre {
 .content img {
     width: 100%;
 }
+
+.gift-photo {
+    position: relative;
+}
+
+.gift-item {
+    border: 1px solid #eeeeee;
+    text-align: center;
+    color: green;
+    margin: 2px;
+    padding: 5px;
+}
+
+.gift-item p {
+    margin-bottom: 4px;
+}
+
+.gift-photo span {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
