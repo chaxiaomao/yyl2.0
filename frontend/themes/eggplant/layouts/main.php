@@ -50,9 +50,9 @@ if (Yii::$app->wechat->isWechat) {
 
     body {
         /*background-color: #eeeeee;*/
-        background-image: linear-gradient(to top, #a18cd1 0%, #fbc2eb 100%);
-        margin-bottom: 42px;
-        background-attachment: fixed;
+        /*background-image: linear-gradient(to top, #a18cd1 0%, #fbc2eb 100%);*/
+        margin-bottom: 60px;
+        background: linear-gradient(to top, #0ba360 0%, #3cba92 100%) fixed;
     }
 
     .bottom {
@@ -68,6 +68,7 @@ if (Yii::$app->wechat->isWechat) {
     .bottom a {
         height: 42px;
         line-height: 42px;
+        color: green;
     }
 </style>
 <body>
@@ -75,10 +76,10 @@ if (Yii::$app->wechat->isWechat) {
 <?= $content ?>
 <div class="container-fluid bottom">
     <div class="row">
-        <?= Html::a('<span class="glyphicon glyphicon-stats">' . Yii::t('app.c2', 'Rank') . '</span>', ['/', 's' => $this->context->activity->seo_code], ['class' => 'col-xs-3']) ?>
-        <?= Html::a('<span class="glyphicon glyphicon-gift">' . Yii::t('app.c2', 'Draw') . '</span>', ['/', 's' => $this->context->activity->seo_code], ['class' => 'col-xs-3']) ?>
-        <?= Html::a('<span class="glyphicon glyphicon-phone">' . Yii::t('app.c2', 'Apply') . '</span>', ['/apply', 's' => $this->context->activity->seo_code], ['class' => 'col-xs-3']) ?>
-        <?= Html::a('<span class="glyphicon glyphicon-user">' . Yii::t('app.c2', 'Mine') . '</span>', ['/', 's' => $this->context->activity->seo_code], ['class' => 'col-xs-3']) ?>
+        <?= Html::a('<span class="glyphicon glyphicon-stats">' . Yii::t('app.c2', 'Rank') . '</span>', '/s/'. $this->context->activity->seo_code, ['class' => 'col-xs-3']) ?>
+        <?= Html::a('<span class="glyphicon glyphicon-gift">' . Yii::t('app.c2', 'Draw') . '</span>', '/s/'. $this->context->activity->seo_code, ['class' => 'col-xs-3']) ?>
+        <?= Html::a('<span class="glyphicon glyphicon-phone">' . Yii::t('app.c2', 'Apply') . '</span>', '/apply/'. $this->context->activity->seo_code, ['class' => 'col-xs-3']) ?>
+        <?= Html::a('<span class="glyphicon glyphicon-user">' . Yii::t('app.c2', 'Mine') . '</span>', '/s/'. $this->context->activity->seo_code, ['class' => 'col-xs-3']) ?>
     </div>
 </div>
 

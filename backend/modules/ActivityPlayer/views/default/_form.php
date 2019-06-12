@@ -81,7 +81,7 @@ $form = ActiveForm::begin([
             'form' => $form,
             'columns' => 2,
             'attributes' => [
-                'type' => ['type' => Form::INPUT_DROPDOWN_LIST, 'items' => \common\models\c2\statics\ActivityEntryType::getHashMap('id', 'label')],
+                'type' => ['type' => Form::INPUT_DROPDOWN_LIST, 'items' => \common\models\c2\statics\ActivityPlayerType::getHashMap('id', 'label')],
                 // 'user_id' => ['type' => Form::INPUT_TEXT, 'options' => ['placeholder' => $model->getAttributeLabel('user_id')]],
                 'user_id' => [
                     'type' => Form::INPUT_WIDGET,

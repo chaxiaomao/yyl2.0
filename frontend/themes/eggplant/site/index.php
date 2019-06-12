@@ -66,7 +66,7 @@ $this->title = $activityModel->title;
         <?php $rank = 1 ?>
         <?php foreach ($playerModels as $item): ?>
             <li>
-                <div class="main-bg-color main-font-color">
+                <div class="reverse-main-bg-color main-font-color">
 
                     <div class="player-photo" style="background-image: url(<?= $item->getThumbnailUrl() ?>)"></div>
                     <span class="reverse-main-bg-color"><?= Yii::t('app.c2', 'th {s1}', ['s1' => $rank++]) ?></span>

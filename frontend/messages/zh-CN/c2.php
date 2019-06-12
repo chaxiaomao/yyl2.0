@@ -88,6 +88,10 @@ return [
     'Content' => '内容',
     'Photo Add' => '图片添加',
     'Photo must upload.' => '请先添加图片。',
+    'Title like that.' => '填写标题，如：我是xx，请投我一票谢谢！',
+    'Content like that.' => '填写内容',
+    'Apply successful.' => '报名成功！',
+    'Submit Application' => '提交申请',
     '' => '',
 ];
 

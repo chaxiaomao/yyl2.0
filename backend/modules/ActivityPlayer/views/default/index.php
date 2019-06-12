@@ -64,7 +64,7 @@ $this->params['breadcrumbs'][] = $this->title;
             [
                 'attribute' => 'type',
                 'value' => function ($model) {
-                    return \common\models\c2\statics\ActivityEntryType::getLabel($model->type);
+                    return \common\models\c2\statics\ActivityPlayerType::getLabel($model->type);
                 }
             ],
             // 'activity_id',

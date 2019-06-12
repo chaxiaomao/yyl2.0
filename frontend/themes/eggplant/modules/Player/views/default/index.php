@@ -1,6 +1,6 @@
 <?php
 
-
+$this->title = $playerModel->title;
 ?>
     <style>
         .of {
@@ -65,7 +65,7 @@
             </div>
 
             <div id="gifts" style="display: none;margin-top: 5px;">
-                <?= \frontend\widgets\GiftsGridView::widget(['activityModel' => $playerModel->activity]) ?>
+                <?= \frontend\widgets\GiftsGridView::widget(['activityModel' => $playerModel->activity, 'playerId' => $playerModel->id]) ?>
                 <div style="text-align: center;font-size: 12px;color: red">
                     活动重在参与，意在宣传推广，不提倡购买!<br>温馨提示：加油支付失败时，请重新登陆后再次为Ta加油
                 </div>
@@ -152,3 +152,7 @@ JS;
 $this->registerJs($js);
 
 ?>
+
+<script type="application/javascript">
+
+</script>

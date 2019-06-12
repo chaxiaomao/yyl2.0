@@ -14,7 +14,7 @@ use Yii;
  * Class FeUserType
  * @package common\models\c2\statics
  */
-class ActivityEntryType extends AbstractStaticClass
+class ActivityPlayerType extends AbstractStaticClass
 {
     const TYPE_SYS_ENTRY = 1;  // load in when demand
     const TYPE_USER_ENTRY = 2;  // load in when demand
