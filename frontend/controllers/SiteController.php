@@ -25,7 +25,7 @@ use yii\web\NotFoundHttpException;
 /**
  * Site controller
  */
-class SiteController extends Controller
+class SiteController extends ActivityController
 {
     /**
      * {@inheritdoc}
@@ -95,6 +95,7 @@ class SiteController extends Controller
         if (is_null($activityModel)) {
             throw new NotFoundHttpException(Yii::t('app.c2', 'Activity disable.'));
         }
+        $this->activity = $activityModel;
         $activityModel->updateCounters(['view_number' => 1]);
         $playerModels = ActivityPlayerModel::find()->where(['activity_id' => $activityModel->id])
             ->andFilterWhere(['state' => ActivityPlayerState::STATE_CHECKED])

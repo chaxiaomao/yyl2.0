@@ -10,6 +10,12 @@ return [
     'player' => [
         'class' => 'frontend\modules\Player\Module',
     ],
+    'apply' => [
+        'class' => 'frontend\modules\Apply\Module',
+    ],
+    'attachments' => [
+        'class' => 'cza\base\modules\Attachments\Module',
+    ],
     'wechat' => [
         'class' => 'frontend\modules\Wechat\Module',
     ],

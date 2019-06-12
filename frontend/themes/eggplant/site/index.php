@@ -74,8 +74,7 @@ $this->title = $activityModel->title;
                         <p><?= $item->title ?></p>
                         <div class="btn-group btn-group-justified" role="group" aria-label="ab">
                             <div class="btn-group" role="group">
-                                <button type="button"
-                                        class="btn btn-warning"><?= Yii::t('app.c2', '{s1} Votes', ['s1' => $item->total_vote_number]) ?></button>
+                                <button class="btn btn-warning"><?= Yii::t('app.c2', '{s1} Votes', ['s1' => $item->total_vote_number]) ?></button>
                             </div>
                             <div class="btn-group" role="group">
                                 <a href="/player/<?= $item->player_code ?>"

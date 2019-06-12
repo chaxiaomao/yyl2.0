@@ -52,6 +52,9 @@ class ActivityPlayerModel extends \cza\base\models\ActiveRecord
                         'validator' => 'image',
                         'rules' => [
                             'maxFiles' => 1,
+                            'uploadRequired' => Yii::t('app.c2', 'Photo must upload.'),
+                            'skipOnEmpty' => true,
+                            'skipOnError' => false,
                             'extensions' => Yii::$app->params['config']['upload']['imageWhiteExts'],
                             // 'extensions' => ['jpg'],
                             'maxSize' => Yii::$app->params['config']['upload']['maxFileSize'],
@@ -74,7 +77,7 @@ class ActivityPlayerModel extends \cza\base\models\ActiveRecord
             [['content'], 'string'],
             [['created_at', 'updated_at'], 'safe'],
             [['player_code', 'title', 'label', 'mobile_number'], 'string', 'max' => 255],
-            [['state', 'status'], 'string', 'max' => 4],
+            [['state', 'status'], 'integer', 'max' => 4],
         ];
     }
 

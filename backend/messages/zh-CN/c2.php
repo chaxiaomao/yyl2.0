@@ -90,7 +90,7 @@ return [
     'View Number' => '浏览次数',
     'Total Vote Number' => '总投票数',
     'Checked' => '已审核',
-    'Not Check' => '为审核',
+    'Not Check' => '待审核',
     'User Name' => '用户名称',
     'Sys Entry' => '系统报名',
     'User Entry' => '用户报名',

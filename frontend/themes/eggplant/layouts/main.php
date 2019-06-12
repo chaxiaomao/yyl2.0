@@ -10,9 +10,11 @@
 
 <?php
 /* @var $this \yii\web\View */
+
 /* @var $content string */
 
 use yii\helpers\Html;
+
 \frontend\themes\eggplant\Eggplant::register($this);
 
 if (Yii::$app->wechat->isWechat) {
@@ -26,10 +28,10 @@ if (Yii::$app->wechat->isWechat) {
     <meta charset="<?= Yii::$app->charset ?>">
     <meta name="viewport" content="initial-scale=1, maximum-scale=3, minimum-scale=1, user-scalable=no">
     <!--UC浏览器禁止横屏-->
-    <meta name="screen-orientation"content="portrait">
+    <meta name="screen-orientation" content="portrait">
     <!--QQ浏览器禁止横屏-->
     <meta name="x5-orientation" content="portrait">
-    <meta http-equiv="pragma" content="no-cache" />
+    <meta http-equiv="pragma" content="no-cache"/>
     <?= Html::csrfMetaTags() ?>
     <?php
     // if ($this->beginCache('baidu_statiistic', ['duration' => Yii::$app->settings->get('perf\cache_duration', 3600), 'enabled' => Yii::$app->settings->get('perf\cache_enable', 1)])) {
@@ -45,12 +47,14 @@ if (Yii::$app->wechat->isWechat) {
     html {
         height: 100%;
     }
+
     body {
         /*background-color: #eeeeee;*/
         background-image: linear-gradient(to top, #a18cd1 0%, #fbc2eb 100%);
         margin-bottom: 42px;
         background-attachment: fixed;
     }
+
     .bottom {
         width: 100%;
         position: fixed;
@@ -60,6 +64,7 @@ if (Yii::$app->wechat->isWechat) {
         text-align: center;
         background-color: #ffffff;
     }
+
     .bottom a {
         height: 42px;
         line-height: 42px;
@@ -70,10 +75,10 @@ if (Yii::$app->wechat->isWechat) {
 <?= $content ?>
 <div class="container-fluid bottom">
     <div class="row">
-        <?= Html::a(Yii::t('app.c2', 'Rank'), ['/', 's' => 1], ['class' => 'col-xs-3']) ?>
-        <?= Html::a(Yii::t('app.c2', 'Draw'), '/', ['class' => 'col-xs-3']) ?>
-        <?= Html::a(Yii::t('app.c2', 'Apply'), '/', ['class' => 'col-xs-3']) ?>
-        <?= Html::a(Yii::t('app.c2', 'Mine'), '/', ['class' => 'col-xs-3']) ?>
+        <?= Html::a('<span class="glyphicon glyphicon-stats">' . Yii::t('app.c2', 'Rank') . '</span>', ['/', 's' => $this->context->activity->seo_code], ['class' => 'col-xs-3']) ?>
+        <?= Html::a('<span class="glyphicon glyphicon-gift">' . Yii::t('app.c2', 'Draw') . '</span>', ['/', 's' => $this->context->activity->seo_code], ['class' => 'col-xs-3']) ?>
+        <?= Html::a('<span class="glyphicon glyphicon-phone">' . Yii::t('app.c2', 'Apply') . '</span>', ['/apply', 's' => $this->context->activity->seo_code], ['class' => 'col-xs-3']) ?>
+        <?= Html::a('<span class="glyphicon glyphicon-user">' . Yii::t('app.c2', 'Mine') . '</span>', ['/', 's' => $this->context->activity->seo_code], ['class' => 'col-xs-3']) ?>
     </div>
 </div>
 

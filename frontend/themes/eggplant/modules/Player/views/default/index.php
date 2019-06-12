@@ -3,17 +3,21 @@
 
 ?>
     <style>
+        .of {
+            font-weight: bold;
+            color: orange
+        }
     </style>
 
     <div class="container-fluid" style="margin-top: 10px">
         <div class="panel" style="margin-bottom: 0;">
             <div class="panel-body">
                 <div class="row">
-                    <p id="total-vote-number" class="col-xs-6" style="font-weight: bold;color: orange">
+                    <p class="col-xs-6 of">
                         <?= Yii::t('app.c2', 'ID:') . $playerModel->player_code; ?>
                     </p>
-                    <p class="col-xs-6" style="font-weight: bold;color: orange;text-align: right">
-                        <?= $playerModel->total_vote_number . Yii::t('app.c2', 'Vote') ?>
+                    <p class="col-xs-6 of" style="text-align: right">
+                        <span id="total-vote-number"><?= $playerModel->total_vote_number ?></span><?= Yii::t('app.c2', 'Vote') ?>
                     </p>
                 </div>
                 <?= $playerModel->title; ?>
@@ -60,9 +64,11 @@
                 </div>
             </div>
 
-            <div id="gifts" style="display: none;">
+            <div id="gifts" style="display: none;margin-top: 5px;">
                 <?= \frontend\widgets\GiftsGridView::widget(['activityModel' => $playerModel->activity]) ?>
-                <div style="clear: both"></div>
+                <div style="text-align: center;font-size: 12px;color: red">
+                    活动重在参与，意在宣传推广，不提倡购买!<br>温馨提示：加油支付失败时，请重新登陆后再次为Ta加油
+                </div>
             </div>
         </div>
 
@@ -95,15 +101,45 @@ var swiper = new Swiper('.swiper-container', {
     });
 
 $('#btn-free-vote').on('click', function(e) {
-  $.post('/site/vote', {id:"{$playerModel->id}"}, function(res) {
-    if (res) {
-        if (res._meta.result === '0000') {
-            $('#total-vote-number').html(res._data.total_vote_number);
+  // $.post('/site/vote', {id:"{$playerModel->id}"}, function(res) {
+  //   if (res) {
+  //       if (res._meta.result === '0000') {
+  //           $('#total-vote-number').html(res._data.total_vote_number);
+  //       }
+  //       $('#content-modal').find('.modal-title').html('提示');
+  //       $('#content-modal').modal('show').find('.modal-body').html(res._meta.message);
+  //   }
+  // })
+  
+  $.ajax({
+    type: 'post',
+    url: '/site/vote',
+    dataType: 'json',
+    data: {id:"{$playerModel->id}"},
+    beforeSend: function() {
+      console.log('before')
+    },
+    success: function(res) {
+          if (res) {
+            if (res._meta.result === '0000') {
+                $('#total-vote-number').html(res._data.total_vote_number);
+            }
+            $('#content-modal').find('.modal-title').html('提示');
+            $('#content-modal').modal('show').find('.modal-body').html(res._meta.message);
         }
-        $('#content-modal').find('.modal-title').html('提示');
-        $('#content-modal').modal('show').find('.modal-body').html(res._meta.message);
+    },
+    error: function(res) {
+      if (res.status === 500) {
+          $('#content-modal').find('.modal-title').html('提示');
+          // $('#content-modal').modal('show').find('.modal-body').html(res.responseText);
+          $('#content-modal').modal('show').find('.modal-body').html('服务器开小差');
+      } 
+    },
+    complete: function() {
+      console.log('done')
     }
   })
+  
 })
 
 $('#btn-gift-vote').on('click', function(e) {

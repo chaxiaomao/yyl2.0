@@ -26,7 +26,7 @@ class GiftsGridView extends Widget
                                     <img style="width: 60px" align="center" src="{photo}">
                                 </div>
                                 <p>{title}</p>
-                                <button class="btn btn-sm btn-success" style="width: 80%">赠送</button>
+                                <button class="btn btn-sm btn-success" style="width: 80%;line-height: 1;">赠送</button>
                             </div>
                         </div>';
 
@@ -43,14 +43,13 @@ class GiftsGridView extends Widget
                     $result .= strtr($this->template, [
                         '{score}' => '+' . ($models[$j]->obtain_score + 0) . '积分',
                         '{photo}' => $models[$j]->getThumbnailUrl(),
-                        '{title}' => $models[$j]->name . $models[$j]->obtain_vote_number,
+                        '{title}' => $models[$j]->name . ' +' . $models[$j]->obtain_vote_number . '票',
                     ]);
                 }
 
             }
             $result .= '</div>';
         }
-        \Yii::info($result);
         echo $result;
 
         // return $this->render('GiftsGridView', [

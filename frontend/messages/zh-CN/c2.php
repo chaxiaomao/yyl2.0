@@ -83,6 +83,11 @@ return [
     'Diff After Player Vote' => '后一名差',
     'Tips' => '提示',
     'Vote' => '票',
+    'Require Redis Component Support!' => '投票服务开启失败',
+    'Title' => '标题',
+    'Content' => '内容',
+    'Photo Add' => '图片添加',
+    'Photo must upload.' => '请先添加图片。',
     '' => '',
 ];
 
