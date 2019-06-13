@@ -23,11 +23,11 @@ class GiftsGridView extends Widget
     public $template = '<div class="col-xs-4" style="padding: 0">
                             <div class="gift-item">
                                 <div class="gift-photo">
-                                    <span class="label label-success">{score}</span>
+                                    <span class="label label-success">{obtain_score}</span>
                                     <img style="width: 60px" align="center" src="{photo}">
                                 </div>
                                 <p>{title}</p>
-                                <button data-value="{gift_id}" class="btn btn-sm btn-success gift" style="width: 80%;line-height: 1;">赠送</button>
+                                <button data-value="{gift_id}" data-score="{gift_score}" class="btn btn-sm btn-success gift" style="width: 80%;line-height: 1;">赠送</button>
                             </div>
                         </div>';
 
@@ -42,10 +42,11 @@ class GiftsGridView extends Widget
             for ($j = $i * 3; $j < ($i + 1) * 3; $j++) {
                 if (!is_null($models[$j])) {
                     $result .= strtr($this->template, [
-                        '{score}' => '+' . ($models[$j]->obtain_score + 0) . '积分',
+                        '{obtain_score}' => '+' . ($models[$j]->obtain_score + 0) . '积分',
                         '{photo}' => $models[$j]->getThumbnailUrl(),
                         '{title}' => $models[$j]->name . ' +' . $models[$j]->obtain_vote_number . '票',
                         '{gift_id}' => $models[$j]->id,
+                        '{gift_score}' => $models[$j]->obtain_score + 0,
                     ]);
                 }
 
@@ -64,17 +65,35 @@ class GiftsGridView extends Widget
         $js = "";
         $js .= "
                 $('.gift').on('click', function (e) {
-                    console.log();
-                        $.ajax({
+                    var gift_id = jQuery(e.currentTarget).attr('data-value');
+                    $.ajax({
                         type: 'post',
                         url: '/wechat/default/payment',
                         dataType: 'json',
-                        data: {player_id:'{$this->playerId}', gift_id: jQuery(e.currentTarget).attr('data-value')},
+                        data: {player_id:'{$this->playerId}', gift_id: gift_id},
                         beforeSend: function() {
-                            console.log('before')
+                            window.top.window.showLoading();
                         },
-                        success: function(res) {
-                            console.log(res);
+                        success: function(data) {
+                            console.log(data);
+                            if(data._data == false) {
+                                $('#content-modal').find('.modal-title').html('提示');
+                                $('#content-modal').modal('show').find('.modal-body').html(data._meta.message);
+                            }
+                             if (data) {
+                                var config = JSON.parse(data);
+                                WeixinJSBridge.invoke('getBrandWCPayRequest', config, function (res) {
+                                        if (res.err_msg == 'get_brand_wcpay_request:ok') {
+                                            // 使用以上方式判断前端返回,微信团队郑重提示：
+                                            // res.err_msg将在用户支付成功后返回
+                                            // ok，但并不保证它绝对可靠。
+                                            var elem = $('#total-vote-number');
+                                            var gift_score = jQuery(e.currentTarget).attr('data-score');
+                                            elem.html(parseInt(elem.text()) + parseInt(gift_score));
+                                        }
+                                    }
+                                )
+                            }
                         },
                         error: function(res) {
                             if (res.status === 500) {
@@ -84,7 +103,7 @@ class GiftsGridView extends Widget
                             }
                         },
                         complete: function() {
-                            console.log('done')
+                            window.top.window.hideLoading();
                         }
                     });
                 })

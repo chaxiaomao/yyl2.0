@@ -78,9 +78,9 @@ return [
     'Gift Vote' => '礼物投票',
     'Player disable.' => '选手审核中或不存在。',
     'Vote Number' => '票数',
-    'Current Rank' => '排名',
-    'Diff Before Player Vote' => '前一名差',
-    'Diff After Player Vote' => '后一名差',
+    'Current Rank' => '当前排名',
+    'Diff Before Player Vote' => '与前一名相差',
+    'Diff After Player Vote' => '与后一名相差',
     'Tips' => '提示',
     'Vote' => '票',
     'Require Redis Component Support!' => '投票服务开启失败',
@@ -92,6 +92,10 @@ return [
     'Content like that.' => '填写内容',
     'Apply successful.' => '报名成功！',
     'Submit Application' => '提交申请',
+    'Vote Fail' => '投票失败',
+    'Pay Body' => '虹之玉-摇摇乐-礼物赠送',
+    'Gift to {s1} pay for {s2}' => '正在参与{s1}活动，为选手赠送【{s2}】礼物。',
+    'th' => '名',
     '' => '',
 ];
 

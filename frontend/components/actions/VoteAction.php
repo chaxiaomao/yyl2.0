@@ -6,6 +6,7 @@ use common\models\c2\entity\ActivityPlayerModel;
 use common\models\c2\entity\ActivityPlayerVoteRecordModel;
 use common\models\c2\statics\ActivityPlayerState;
 use common\models\c2\statics\VoteType;
+use common\models\c2\statics\Whether;
 use cza\base\models\statics\ResponseDatum;
 use Yii;
 use yii\base\InvalidConfigException;
@@ -41,8 +42,11 @@ class VoteAction extends \yii\base\Action
             return ResponseDatum::getErrorDatum(['message' => Yii::t('app.c2', 'Player disable.')], false);
         }
         $activityModel = $playerModel->activity;
+        if ($activityModel->is_released != Whether::TYPE_YES || time() > strtotime($activityModel->end_at)) {
+            return ResponseDatum::getErrorDatum(['message' => Yii::t('app.c2', 'Activity disable.')], false);
+        }
         $user = \Yii::$app->user->identity;
-        $key = 'user:' . $user->id . '/' . 'player:' . $playerModel->id . '/' . date('Y-m-d', time());
+        $key = 'vote:' .$user->id . $playerModel->id . date('Y-m-d', time());
         $redis = \Yii::$app->redis;
         $votedNum = $redis->get($key);
         if ($votedNum < $activityModel->vote_number_limit) {
@@ -58,18 +62,24 @@ class VoteAction extends \yii\base\Action
             $model = new ActivityPlayerVoteRecordModel();
             $model->setAttributes($attributes);
             if ($model->save()) {
-                $redis->incr($key);
-                $redis->expire($key, 60 * 60 * 24);
+
                 $playerModel->updateCounters(['free_vote_number' => 1]);
                 $playerModel->updateCounters(['total_vote_number' => 1]);
                 $activityModel->updateCounters(['vote_number' => 1]);
                 $user->updateCounters(['score' => 1]);
 
+                $redis->incr($key);
+                $redis->expire($key, 60 * 60 * 24);
+
+                $kActivity = K_ACTIVITY_RANK . $playerModel->activity_id;
+                $kPlayer = K_PLAYER . $playerModel->id;
+                $redis->executeCommand('ZADD', [$kActivity, $playerModel->total_vote_number, $kPlayer]);
+
                 $responseData = ResponseDatum::getSuccessDatum([
                     'message' => Yii::t('app.c2', 'Vote Success')
                 ], $playerModel);
             } else {
-                return ResponseDatum::getErrorDatum(['message' => Yii::t('app.c2', 'Vote Fail')], false);
+                $responseData = ResponseDatum::getErrorDatum(['message' => Yii::t('app.c2', 'Vote Fail')], false);
             }
 
         } else {

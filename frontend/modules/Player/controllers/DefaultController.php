@@ -36,6 +36,7 @@ class DefaultController extends ActivityController
     public function actionIndex($p = null)
     {
         $playerModel = ActivityPlayerModel::findOne(['player_code' => $p]);
+        $playerModel->getActivityRank();
         $activityModel = $playerModel->activity;
         $this->activity = $activityModel;
         if ($playerModel->state == ActivityPlayerState::STATE_NOT_CHECK

@@ -11,7 +11,6 @@ use yii\helpers\Html;
 use yii\helpers\Url;
 
 $this->title = $activityModel->title;
-
 // $assets = \frontend\themes\eggplant\AppAsset::register($this);
 // $this->registerJsFile("{$assets->baseUrl}/js/swiper.min.js");
 // $this->registerJsFile("{$assets->baseUrl}/js/leftTime.min.js");

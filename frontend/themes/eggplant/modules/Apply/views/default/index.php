@@ -190,17 +190,20 @@ $form = ActiveForm::begin([
             'type' => 'button', 'class' => 'btn btn-warning btn-block'
         ]);
         ?>
+
+        <div class="content" style="color: #ffffff">
+
+            <h4 style="text-align: center;font-weight: bold"><?= Yii::t('app.c2', 'Activity Introduce') ?></h4>
+            <?= $activityModel->content ?>
+        </div>
+
     </div>
 
 </div>
 <?php ActiveForm::end(); ?>
 <?php Pjax::end() ?>
 
-<div class="content" style="color: #ffffff">
 
-    <h4 style="text-align: center;font-weight: bold"><?= Yii::t('app.c2', 'Activity Introduce') ?></h4>
-    <?= $activityModel->content ?>
-</div>
 
 <?php
 $js = <<<JS

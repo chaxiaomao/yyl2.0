@@ -1,12 +1,12 @@
-1.php.ini开启intl.ddl
+- php.ini开启intl.ddl
 
-2.导入pdm/common_base_table.sql
+- 导入pdm/common_base_table.sql
 
-3.配置图片上传路径app_image/uploads下面
+- 配置图片上传路径app_image/uploads下面
 
-4.初始化配置文件：win下执行init，linux下执行php yii init
+- 初始化配置文件：win下执行init，linux下执行php yii init
 
-5.apache配置rewrite规则，如：
+- apache配置rewrite规则，如：
 ```
 # yyl be
 <VirtualHost *:80>
@@ -70,3 +70,5 @@ server
         access_log  /home/wwwlogs/fe-ds.otmk.club.log;
     }
 ```
+
+- redis用户投票key，缓存一天，格式:vote:{user_id}{player_id}{Y-m-d}

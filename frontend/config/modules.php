@@ -22,10 +22,9 @@ return [
     'log-reader' => [
         'class' => 'zhuravljov\yii\logreader\Module',
         'aliases' => [
-            'backend Errors' => '@backend/runtime/logs/backend_debug.log',
-            'backend Info' => '@backend/runtime/logs/backend_info.log',
-            'Console Errors' => '@backend/runtime/logs/app.log',
-
+            'backend Errors' => '@frontend/runtime/logs/backend_debug.log',
+            'backend Info' => '@frontend/runtime/logs/backend_info.log',
+            'Console Errors' => '@frontend/runtime/logs/app.log',
         ],
     ],
 ];
