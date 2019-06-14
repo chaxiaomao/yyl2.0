@@ -51,6 +51,15 @@ $this->registerCSS($css);
     }
 </style>
 
+<?php
+\yii\bootstrap\Modal::begin([
+    'id' => 'content-modal',
+    'header' => '<p class="modal-title"></p>',
+]);
+\yii\bootstrap\Modal::end();
+
+?>
+
 
 <?php Pjax::begin(['id' => $model->getDetailPjaxName(), 'formSelector' => $model->getBaseFormName(true), 'enablePushState' => false, 'clientOptions' => [
     'skipOuterContainers' => true
@@ -70,17 +79,10 @@ $form = ActiveForm::begin([
     <div class="container-fluid">
 
         <?php if (Yii::$app->session->hasFlash($messageName)): ?>
-            <?php if (!$model->hasErrors()) {
-                echo InfoBox::widget([
-                    'withWrapper' => false,
-                    'messages' => Yii::$app->session->getFlash($messageName),
-                ]);
-            } else {
-                echo InfoBox::widget([
-                    'defaultMessageType' => InfoBox::TYPE_WARNING,
-                    'messages' => Yii::$app->session->getFlash($messageName),
-                ]);
-            }
+            <?php
+            $js = "$('#content-modal').find('.modal-title').html('提示');
+                $('#content-modal').modal('show').find('.modal-body').html('" . Yii::$app->session->getFlash($messageName)[0] . "');";
+            $this->registerJs($js);
             ?>
         <?php endif; ?>
 

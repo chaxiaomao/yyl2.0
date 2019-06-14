@@ -75,15 +75,15 @@ $this->params['breadcrumbs'][] = $this->title;
                 }
             ],
             // 'user_id',
-            [
-                'attribute' => 'user_id',
-                'value' => function ($model) {
-                    return $model->user->username;
-                }
-            ],
+            // [
+            //     'attribute' => 'user_id',
+            //     'value' => function ($model) {
+            //         return $model->user->username;
+            //     }
+            // ],
             'income',
             'player_code',
-            // 'title',
+            'title',
             // 'label',
             // 'content:ntext',
             'mobile_number',
@@ -125,7 +125,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 }
             ],
             [
-                'class' => '\kartik\grid\ActionColumn',
+                'class' => \common\widgets\grid\ActionColumn::className(),
                 'buttons' => [
                     'update' => function ($url, $model, $key) {
                         return Html::a('<span class="glyphicon glyphicon-pencil"></span>', ['edit', 'id' => $model->id], [

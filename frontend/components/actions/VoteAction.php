@@ -47,7 +47,7 @@ class VoteAction extends \yii\base\Action
             return ResponseDatum::getErrorDatum(['message' => Yii::t('app.c2', 'Activity disable.')], false);
         }
         $user = \Yii::$app->user->identity;
-        $key = 'vote:' .$user->id . $playerModel->id . date('Y-m-d', time());
+        $key = K_VOTED . $user->id . '_' . $playerModel->id . '_' . date('Y-m-d', time());
         $redis = \Yii::$app->redis;
         $votedNum = $redis->get($key);
         if ($votedNum < $activityModel->vote_number_limit) {

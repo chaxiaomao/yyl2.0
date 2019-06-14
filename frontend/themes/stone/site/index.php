@@ -12,20 +12,9 @@
 
 </style>
 
-<!-- Swiper -->
-<div class="swiper-container">
-    <div class="swiper-wrapper">
-        <?php foreach ($activityModel->getPosters() as $item): ?>
-            <div class="swiper-slide"><img class="w100" src="<?= $item ?>"></div>
-        <?php endforeach; ?>
-    </div>
-    <!-- Add Pagination -->
-    <div class="swiper-pagination"></div>
-</div>
-
+<?= \frontend\widgets\PhotosSwiper::widget(['model' => $activityModel]) ?>
 
 <div class="container-fluid">
-
 
     <?= \frontend\widgets\PlayerSearch::widget([]) ?>
 
@@ -83,18 +72,7 @@
     </div>
 </div>
 
-<?php
-$js = <<<JS
-    var swiper = new Swiper('.swiper-container', {
-        pagination: {
-            el: '.swiper-pagination',
-            observer: true,//修改swiper自己或子元素时，自动初始化swiper
-            observeParents: true//修改swiper的父元素时，自动初始化swiper
-        },
-    });
-JS;
-$this->registerJS($js);
-?>
+
 
 <script type="text/javascript">
     $(function () {

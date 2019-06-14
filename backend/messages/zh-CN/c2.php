@@ -124,6 +124,7 @@ return [
     'Price' => '价格',
     'Apply To All Activities' => '适用全部活动',
     'Username Label' => '姓名',
+    'This activity has players.' => '该活动有选手，请先删除该活动选手。',
     '' => '',
 ];
 

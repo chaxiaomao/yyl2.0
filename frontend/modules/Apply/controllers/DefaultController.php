@@ -46,16 +46,14 @@ class DefaultController extends ActivityController
         $model->loadDefaultValues();
 
         if ($model->load(Yii::$app->request->post())) {
-            Yii::info(Yii::$app->request->post());
             if ($model->save()) {
                 Yii::$app->session->setFlash($model->getMessageName(), [Yii::t('app.c2', 'Apply successful.')]);
             } else {
                 Yii::$app->session->setFlash($model->getMessageName(), $model->errors);
             }
         }
-        return $this->render('index', [
-            'model' => $model,
-            'activityModel' => $activityModel,
-        ]);
+
+        return (Yii::$app->request->isAjax) ? $this->renderAjax('index', [
+            'activityModel' => $activityModel, 'model' => $model,]) : $this->render('index', ['activityModel' => $activityModel, 'model' => $model,]);
     }
 }

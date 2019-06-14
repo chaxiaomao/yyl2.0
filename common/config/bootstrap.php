@@ -24,3 +24,7 @@ Yii::setAlias('@backend', dirname(dirname(__DIR__)) . '/backend');
 Yii::setAlias('@console', dirname(dirname(__DIR__)) . '/console');
 Yii::setAlias('@appimage', dirname(dirname(__DIR__)) . '/app_image/uploads');
 Yii::setAlias('@app_eshop', dirname(dirname(__DIR__)) . '/app_eshop');
+
+define('K_ACTIVITY_RANK', 'activity_rank:');
+define('K_PLAYER', 'player:');
+define('K_VOTED', 'voted:'); // 缓存一天

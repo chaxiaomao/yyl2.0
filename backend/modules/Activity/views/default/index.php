@@ -49,17 +49,17 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
             'exportConfig' => [],
             'columns' => [
-                // ['class' => 'kartik\grid\CheckboxColumn'],
+                ['class' => 'kartik\grid\CheckboxColumn'],
                 // ['class' => 'kartik\grid\SerialColumn'],
-                // [
-                //     'class' => 'kartik\grid\ExpandRowColumn',
-                //     'expandIcon' => '<span class="fa fa-plus-square-o"></span>',
-                //     'collapseIcon' => '<span class="fa fa-minus-square-o"></span>',
-                //     'detailUrl' => Url::toRoute(['detail']),
-                //     'value' => function ($model, $key, $index, $column) {
-                //         return GridView::ROW_COLLAPSED;
-                //     },
-                // ],
+                [
+                    'class' => 'kartik\grid\ExpandRowColumn',
+                    'expandIcon' => '<span class="fa fa-plus-square-o"></span>',
+                    'collapseIcon' => '<span class="fa fa-minus-square-o"></span>',
+                    'detailUrl' => Url::toRoute(['detail']),
+                    'value' => function ($model, $key, $index, $column) {
+                        return GridView::ROW_COLLAPSED;
+                    },
+                ],
                 'id',
                 // 'type',
                 'title',
@@ -132,7 +132,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     }
                 ],
                 [
-                    'class' => '\kartik\grid\ActionColumn',
+                    'class' => \common\widgets\grid\ActionColumn::className(),
                     'width' => '100px',
                     'template' => '{update} {view} {browser} {players}',
                     'buttons' => [

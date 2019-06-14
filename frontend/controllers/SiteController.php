@@ -92,9 +92,9 @@ class SiteController extends ActivityController
     public function actionIndex($s = null)
     {
         $activityModel = ActivityModel::findOne(['seo_code' => $s, 'is_released' => Whether::TYPE_YES]);
-        // if (is_null($activityModel) || $activityModel->is_released == Whether::TYPE_NO) {
-        //     throw new NotFoundHttpException(Yii::t('app.c2', 'Activity disable.'));
-        // }
+        if (is_null($activityModel) || $activityModel->is_released == Whether::TYPE_NO) {
+            throw new NotFoundHttpException(Yii::t('app.c2', 'Activity disable.'));
+        }
         $this->activity = $activityModel;
         $activityModel->updateCounters(['view_number' => 1]);
         $playerModels = ActivityPlayerModel::find()->where(['activity_id' => $activityModel->id])

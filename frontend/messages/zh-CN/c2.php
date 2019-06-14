@@ -100,6 +100,7 @@ return [
     '{s1} inc{s2}' => '{s1} +{s2}票',
     'inc{s1}' => '+{s1}票',
     'Newest voted.' => '他们刚刚给ta投票!',
+    'Generate Poster' => '生成海报',
     '' => '',
 ];
 

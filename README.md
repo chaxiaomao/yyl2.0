@@ -71,4 +71,4 @@ server
     }
 ```
 
-- redis用户投票key，缓存一天，格式:vote:{user_id}{player_id}{Y-m-d}
+- redis的key管理文件：common/config/bootstrap.php。

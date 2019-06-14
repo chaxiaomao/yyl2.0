@@ -19,4 +19,10 @@ class VoteHelper
         $kPlayer = K_PLAYER . $playerModel->id;
         $redis->executeCommand('ZADD', [$kActivity, $playerModel->total_vote_number, $kPlayer]);
     }
+
+    public static function getVotedMember($userId, $playerId)
+    {
+        return K_VOTED . $userId . '_' . $playerId . '_' . date('Y-m-d', time());
+    }
+
 }
