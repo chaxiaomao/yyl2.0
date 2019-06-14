@@ -27,7 +27,7 @@ class GiftsGridView extends Widget
                                     <img style="width: 60px" align="center" src="{photo}">
                                 </div>
                                 <p>{title}</p>
-                                <button data-value="{gift_id}" data-score="{gift_score}" class="btn btn-sm btn-success gift" style="width: 80%;line-height: 1;">赠送</button>
+                                <button data-value="{gift_id}" data-score="{gift_score}" class="btn btn-sm btn-success gift" style="width: 80%;line-height: 1;">{price}</button>
                             </div>
                         </div>';
 
@@ -45,6 +45,7 @@ class GiftsGridView extends Widget
                         '{obtain_score}' => '+' . ($models[$j]->obtain_score + 0) . '积分',
                         '{photo}' => $models[$j]->getThumbnailUrl(),
                         '{title}' => $models[$j]->name . ' +' . $models[$j]->obtain_vote_number . '票',
+                        '{price}' => '￥' . $models[$j]->price,
                         '{gift_id}' => $models[$j]->id,
                         '{gift_score}' => $models[$j]->obtain_score + 0,
                     ]);
@@ -87,9 +88,12 @@ class GiftsGridView extends Widget
                                             // 使用以上方式判断前端返回,微信团队郑重提示：
                                             // res.err_msg将在用户支付成功后返回
                                             // ok，但并不保证它绝对可靠。
-                                            var elem = $('#total-vote-number');
-                                            var gift_score = jQuery(e.currentTarget).attr('data-score');
-                                            elem.html(parseInt(elem.text()) + parseInt(gift_score));
+                                            // var elem = $('#total-vote-number');
+                                            // var gift_score = jQuery(e.currentTarget).attr('data-score');
+                                            // elem.html(parseInt(elem.text()) + parseInt(gift_score));
+                                            $('#content-modal').find('.modal-title').html('提示');
+                                            $('#content-modal').modal('show').find('.modal-body').html('赠送成功');
+                                            setTimeout(function(){location.reload()}, 2000);
                                         }
                                     }
                                 )

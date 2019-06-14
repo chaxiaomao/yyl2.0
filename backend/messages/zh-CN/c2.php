@@ -123,6 +123,7 @@ return [
     'Obtain Vote Number' => '获得票数',
     'Price' => '价格',
     'Apply To All Activities' => '适用全部活动',
+    'Username Label' => '姓名',
     '' => '',
 ];
 

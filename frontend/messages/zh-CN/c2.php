@@ -96,6 +96,10 @@ return [
     'Pay Body' => '虹之玉-摇摇乐-礼物赠送',
     'Gift to {s1} pay for {s2}' => '正在参与{s1}活动，为选手赠送【{s2}】礼物。',
     'th' => '名',
+    'Username Label' => '姓名',
+    '{s1} inc{s2}' => '{s1} +{s2}票',
+    'inc{s1}' => '+{s1}票',
+    'Newest voted.' => '他们刚刚给ta投票!',
     '' => '',
 ];
 

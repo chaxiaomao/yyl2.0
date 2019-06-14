@@ -2,6 +2,7 @@
 
 namespace frontend\components\actions;
 
+use common\helpers\VoteHelper;
 use common\models\c2\entity\ActivityPlayerModel;
 use common\models\c2\entity\ActivityPlayerVoteRecordModel;
 use common\models\c2\statics\ActivityPlayerState;
@@ -71,9 +72,11 @@ class VoteAction extends \yii\base\Action
                 $redis->incr($key);
                 $redis->expire($key, 60 * 60 * 24);
 
-                $kActivity = K_ACTIVITY_RANK . $playerModel->activity_id;
-                $kPlayer = K_PLAYER . $playerModel->id;
-                $redis->executeCommand('ZADD', [$kActivity, $playerModel->total_vote_number, $kPlayer]);
+                VoteHelper::setActivityPlayerRank($redis, $playerModel);
+
+                // $kActivity = K_ACTIVITY_RANK . $playerModel->activity_id;
+                // $kPlayer = K_PLAYER . $playerModel->id;
+                // $redis->executeCommand('ZADD', [$kActivity, $playerModel->total_vote_number, $kPlayer]);
 
                 $responseData = ResponseDatum::getSuccessDatum([
                     'message' => Yii::t('app.c2', 'Vote Success')

@@ -3,10 +3,12 @@
 namespace frontend\modules\Player\controllers;
 
 use common\models\c2\entity\ActivityPlayerModel;
+use common\models\c2\search\ActivityPlayerVoteRecordSearch;
 use common\models\c2\statics\ActivityPlayerState;
 use common\models\c2\statics\Whether;
 use frontend\components\behaviors\WechatAuthBehavior;
 use frontend\controllers\ActivityController;
+use Yii;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 
@@ -36,16 +38,18 @@ class DefaultController extends ActivityController
     public function actionIndex($p = null)
     {
         $playerModel = ActivityPlayerModel::findOne(['player_code' => $p]);
-        $playerModel->getActivityRank();
         $activityModel = $playerModel->activity;
         $this->activity = $activityModel;
-        if ($playerModel->state == ActivityPlayerState::STATE_NOT_CHECK
-            || $activityModel->is_released == Whether::TYPE_NO) {
+        // if (is_null($activityModel) || $activityModel->is_released == Whether::TYPE_NO) {
+        //     throw new NotFoundHttpException(Yii::t('app.c2', 'Activity disable.'));
+        // }
+        if (is_null($playerModel) || $playerModel->state == ActivityPlayerState::STATE_NOT_CHECK) {
             throw new NotFoundHttpException(Yii::t('app.c2', 'Player disable.'));
         }
+
         $playerModel->updateCounters(['view_number' => 1]);
         return $this->render('index', [
-            'playerModel' => $playerModel
+            'playerModel' => $playerModel,
         ]);
     }
 }

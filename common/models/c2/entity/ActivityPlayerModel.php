@@ -3,6 +3,7 @@
 namespace common\models\c2\entity;
 
 use common\helpers\CodeGenerator;
+use common\helpers\VoteHelper;
 use common\models\c2\statics\ActivityPlayerState;
 use common\models\c2\statics\ActivityPlayerType;
 use Yii;
@@ -80,7 +81,7 @@ class ActivityPlayerModel extends \cza\base\models\ActiveRecord
             [['created_at', 'updated_at'], 'safe'],
             [['player_code', 'title', 'label', 'mobile_number'], 'string', 'max' => 255],
             [['state', 'status'], 'integer', 'max' => 4],
-            [['content', 'title', 'activity_id'], 'required'],
+            [['content', 'title', 'activity_id', 'label'], 'required'],
         ];
     }
 
@@ -97,7 +98,7 @@ class ActivityPlayerModel extends \cza\base\models\ActiveRecord
             'income' => Yii::t('app.c2', 'Income'),
             'player_code' => Yii::t('app.c2', 'Player Code'),
             'title' => Yii::t('app.c2', 'Title'),
-            'label' => Yii::t('app.c2', 'Label'),
+            'label' => Yii::t('app.c2', 'Username Label'),
             'content' => Yii::t('app.c2', 'Content'),
             'mobile_number' => Yii::t('app.c2', 'Mobile Number'),
             'free_vote_number' => Yii::t('app.c2', 'Free Vote Number'),
@@ -157,9 +158,10 @@ class ActivityPlayerModel extends \cza\base\models\ActiveRecord
 
             // Set redis
             $redis = Yii::$app->redis;
-            $kActivity = K_ACTIVITY_RANK . $this->activity_id;
-            $kPlayer = K_PLAYER . $this->id;
-            $redis->executeCommand('ZADD', [$kActivity, 0, $kPlayer]);
+            VoteHelper::setActivityPlayerRank($redis, $this);
+            // $kActivity = K_ACTIVITY_RANK . $this->activity_id;
+            // $kPlayer = K_PLAYER . $this->id;
+            // $redis->executeCommand('ZADD', [$kActivity, 0, $kPlayer]);
         }
     }
 
