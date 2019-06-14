@@ -27,7 +27,7 @@ class WechatAuthBehavior extends ActionFilter
             $wechatUser = Yii::$app->wechat->getUser();
             $feUser = FeUserModel::findOne(['open_id' => $wechatUser->openid]);
             $attrs = [
-                'type' => FeUserType::TYPE_USER_REGISTRATION,
+                'type' => FeUserType::TYPE_WECHAT_REGISTRATION,
                 'open_id' => $wechatUser->openid,
                 'wechat_open_id' => $wechatUser->openid,
                 'username' => $wechatUser->nickname,

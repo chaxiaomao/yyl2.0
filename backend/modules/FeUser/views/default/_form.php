@@ -69,6 +69,7 @@ $form = ActiveForm::begin([
                             'allowedFileExtensions' => ["jpg", "png", "gif", "jpeg"],
                             'showUpload' => false,
                             'initialPreview' => $model->getInitialPreview('avatar', \cza\base\models\statics\ImageSize::ORGINAL),
+                            'initialPreview' => $model->getAvatar(),
                             'initialPreviewConfig' => $model->getInitialPreview('avatar'),
                         ],
                     ],

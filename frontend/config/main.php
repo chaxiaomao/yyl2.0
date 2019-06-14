@@ -1,5 +1,6 @@
 <?php
-defined('CZA_FRONTEND_THEME') or define('CZA_FRONTEND_THEME', 'eggplant');
+// defined('CZA_FRONTEND_THEME') or define('CZA_FRONTEND_THEME', 'eggplant');
+defined('CZA_FRONTEND_THEME') or define('CZA_FRONTEND_THEME', 'stone');
 $params = yii\helpers\ArrayHelper::merge(
     require(__DIR__ . '/../../common/config/params.php'), require(__DIR__ . '/params.php')
 );

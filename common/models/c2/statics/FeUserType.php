@@ -17,7 +17,7 @@ use Yii;
 class FeUserType extends AbstractStaticClass
 {
     const TYPE_SYS_REGISTRATION = 1;  // load in when demand
-    const TYPE_USER_REGISTRATION = 2;  // load in when demand
+    const TYPE_WECHAT_REGISTRATION = 2;  // load in when demand
 
     protected static $_data;
 
@@ -31,7 +31,7 @@ class FeUserType extends AbstractStaticClass
         if (is_null(static::$_data)) {
             static::$_data = [
                 static::TYPE_SYS_REGISTRATION => ['id' => static::TYPE_SYS_REGISTRATION, 'label' => Yii::t('app.c2', 'Sys Registration')],
-                static::TYPE_USER_REGISTRATION => ['id' => static::TYPE_USER_REGISTRATION, 'label' => Yii::t('app.c2', 'User Registration')],
+                static::TYPE_WECHAT_REGISTRATION => ['id' => static::TYPE_WECHAT_REGISTRATION, 'label' => Yii::t('app.c2', 'User Registration')],
             ];
         }
         if ($id !== '' && !empty($attr)) {

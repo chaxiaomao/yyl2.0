@@ -9,7 +9,7 @@
 ?>
 
 
-<div id="dateShow2" class="white-bg" style="padding: 10px">
+<div id="dateShow2" class="white-bg" style="margin: 50px 0 10px 0">
 
     <img class="icon" src="/images/common/clock.png">
     <span id="dataInfoShow_2">活动已结束</span>
