@@ -130,4 +130,54 @@ class EntityAttachmentImage extends EntityAttachment {
         return $url;
     }
 
+    public function getStorePathByFormat($format = ImageSize::MEDIUM) {
+        $storePath = "";
+        switch ($format) {
+            case ImageSize::ICON:
+                $storePath = $this->getIconStorePath();
+                break;
+            case ImageSize::MEDIUM:
+                $storePath = $this->getMediumStorePath();
+                break;
+            case ImageSize::ORGINAL:
+                $storePath = $this->getOriginalStorePath();
+                break;
+            case ImageSize::THUMBNAIL:
+                $storePath = $this->getThumbnailStorePath();
+                break;
+            default:
+                $storePath = $this->getMediumStorePath();
+                break;
+        }
+        return $storePath;
+    }
+
+    public function getIconStorePath() {
+        if (!isset($this->_data['iconStorePath'])) {
+            $this->_data['iconStorePath'] = $this->getStoreDir() . '/' . $this->getIcon();
+        }
+        return $this->_data['iconStorePath'];
+    }
+
+    public function getMediumStorePath() {
+        if (!isset($this->_data['mediumStorePath'])) {
+            $this->_data['mediumStorePath'] = $this->getStoreDir() . '/' . $this->getMedium();
+        }
+        return $this->_data['mediumStorePath'];
+    }
+
+    public function getOriginalStorePath() {
+        if (!isset($this->_data['orginalStorePath'])) {
+            $this->_data['orginalStorePath'] = $this->getStoreDir() . '/' . $this->getOrginal();
+        }
+        return $this->_data['orginalStorePath'];
+    }
+
+    public function getThumbnailStorePath() {
+        if (!isset($this->_data['thumbnailStorePath'])) {
+            $this->_data['thumbnailStorePath'] = $this->getStoreDir() . '/' . $this->getThumbnail();
+        }
+        return $this->_data['thumbnailStorePath'];
+    }
+
 }

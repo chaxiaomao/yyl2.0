@@ -67,11 +67,41 @@ trait AttachmentTrait {
         return $this->getImageUrl($attribute, ImageSize::ORGINAL);
     }
 
+    public function getOriginalStorePath($attribute = 'avatar')
+    {
+        return $this->getImageStorePath($attribute, ImageSize::ORGINAL);
+    }
+
+    public function getMediumStorePath($attribute = 'avatar')
+    {
+        return $this->getImageStorePath($attribute, ImageSize::MEDIUM);
+    }
+
+    public function getIconStorePath($attribute = 'avatar')
+    {
+        return $this->getImageStorePath($attribute, ImageSize::ICON);
+    }
+
+    public function getThumbnailStorePath($attribute = 'avatar')
+    {
+        return $this->getImageStorePath($attribute, ImageSize::THUMBNAIL);
+    }
+
     public function getImageUrl($attribute = 'avatar', $size = ImageSize::THUMBNAIL) {
         $key = $attribute . '_' . $size;
         if (!isset($this->_data[$key])) {
             $attachment = $this->getAttachmentImage($attribute);
             $this->_data[$key] = !is_null($attachment) ? $attachment->getUrlByFormat($size) : "";
+        }
+        return $this->_data[$key];
+    }
+
+    public function getImageStorePath($attribute = 'avatar', $size = ImageSize::MEDIUM)
+    {
+        $key = $attribute . '_' . $size;
+        if (!isset($this->_data[$key])) {
+            $attachment = $this->getAttachmentImage($attribute);
+            $this->_data[$key] = !is_null($attachment) ? $attachment->getStorePathByFormat($size) : "";
         }
         return $this->_data[$key];
     }

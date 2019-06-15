@@ -60,10 +60,13 @@ $this->registerCSS($css);
 
 ?>
 
+<?= \frontend\widgets\PhotosSwiper::widget(['model' => $activityModel]) ?>
+<p></p>
 
 <?php Pjax::begin(['id' => $model->getDetailPjaxName(), 'formSelector' => $model->getBaseFormName(true), 'enablePushState' => false, 'clientOptions' => [
     'skipOuterContainers' => true
 ]]) ?>
+
 <?php
 $form = ActiveForm::begin([
     'action' => ['index', 's' => $activityModel->seo_code],
@@ -204,18 +207,3 @@ $form = ActiveForm::begin([
 </div>
 <?php ActiveForm::end(); ?>
 <?php Pjax::end() ?>
-
-
-
-<?php
-$js = <<<JS
-    var swiper = new Swiper('.swiper-container', {
-        pagination: {
-            el: '.swiper-pagination',
-            observer: true,//修改swiper自己或子元素时，自动初始化swiper
-            observeParents: true//修改swiper的父元素时，自动初始化swiper
-        },
-    });
-JS;
-$this->registerJS($js);
-?>

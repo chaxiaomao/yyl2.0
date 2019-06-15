@@ -31,6 +31,7 @@ class Stone extends \yii\web\AssetBundle
         'yii\web\YiiAsset',
         'yii\bootstrap\BootstrapAsset',
         'yii\bootstrap\BootstrapPluginAsset',
+        'cza\base\assets\AppAsset',
     ];
 
     public $jsOptions=[

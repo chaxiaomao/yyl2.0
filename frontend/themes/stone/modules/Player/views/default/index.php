@@ -23,6 +23,7 @@ $rankResult = $playerModel->getActivityRank();
         background-color: #000000; /* IE6和部分IE7内核的浏览器(如QQ浏览器)下颜色被覆盖 */
         background-color: rgba(0, 0, 0, 0.2); /* IE6和部分IE7内核的浏览器(如QQ浏览器)会读懂，但解析为透明 */
         text-align: center;
+        z-index: 99;
     }
 
     .poster a {
@@ -49,6 +50,12 @@ $rankResult = $playerModel->getActivityRank();
 <?php Pjax::begin(['id' => $model->getDetailPjaxName(), 'formSelector' => $model->getBaseFormName(true), 'enablePushState' => false, 'clientOptions' => [
     'skipOuterContainers' => true
 ]]) ?>
+
+<?php $js = "";
+$js .= "jQuery('{$model->getDetailPjaxName(true)}').off('pjax:send').on('pjax:send', function(){jQuery.fn.czaTools('showLoading', {selector:'{$model->getDetailPjaxName(true)}', 'msg':''});});\n";
+$js .= "jQuery('{$model->getDetailPjaxName(true)}').off('pjax:complete').on('pjax:complete', function(){jQuery.fn.czaTools('hideLoading', {selector:'{$model->getDetailPjaxName(true)}'});});\n";
+$this->registerJs($js);
+?>
 
 <?php
 $form = ActiveForm::begin([
@@ -178,7 +185,7 @@ $form = ActiveForm::begin([
 </div>
 
 <div class="poster">
-    <?= \yii\helpers\Html::a(Yii::t('app.c2', 'Generate Poster'), [''], ['class' => 'btn btn-success']) ?>
+    <?= \yii\helpers\Html::a(Yii::t('app.c2', 'Generate Poster'), '/poster/'. $playerModel->player_code , ['class' => 'btn btn-success']) ?>
 </div>
 
 <?php

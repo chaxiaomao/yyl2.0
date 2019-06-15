@@ -22,7 +22,7 @@ class EshopImageSize
         self::ICON => ['width' => 32, 'height' => 32],
         self::THUMBNAIL => ['width' => 186, 'height' => 186],
         //        self::SMALL => ['width' => 86, 'height' => 54],
-        self::MEDIUM => ['width' => 270, 'height' => 270],
+        self::MEDIUM => ['width' => 324, 'height' => 344],
         self::ORGINAL => ['width' => -1, 'height' => -1],
     ];
 

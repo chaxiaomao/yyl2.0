@@ -101,6 +101,7 @@ return [
     'inc{s1}' => '+{s1}票',
     'Newest voted.' => '他们刚刚给ta投票!',
     'Generate Poster' => '生成海报',
+    'Poster tips.' => '提示：长按图片保存到手机。',
     '' => '',
 ];
 

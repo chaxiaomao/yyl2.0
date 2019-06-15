@@ -7,9 +7,11 @@ use common\models\c2\entity\ActivityPlayerVoteRecordModel;
 use common\models\c2\search\ActivityPlayerVoteRecordSearch;
 use common\models\c2\statics\ActivityPlayerState;
 use common\models\c2\statics\Whether;
+use frontend\components\actions\PosterAction;
 use frontend\components\behaviors\WechatAuthBehavior;
 use frontend\controllers\ActivityController;
 use Yii;
+use yii\helpers\ArrayHelper;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 
@@ -24,6 +26,13 @@ class DefaultController extends ActivityController
     //     'playerModel' => $playerModel,
     //     'model' => $model,
     // ]);
+
+    public function actions()
+    {
+        return ArrayHelper::merge(parent::actions(), [
+           'poster' => PosterAction::className(),
+        ]);
+    }
 
     /**
      * {@inheritdoc}
@@ -71,4 +80,9 @@ class DefaultController extends ActivityController
         return (Yii::$app->request->isAjax) ? $this->renderAjax('index', [
             'playerModel' => $playerModel, 'model' => $model,]) : $this->render('index', ['playerModel' => $playerModel, 'model' => $model,]);
     }
+
+    // public function actionPoster($p)
+    // {
+    //
+    // }
 }

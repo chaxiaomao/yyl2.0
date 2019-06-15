@@ -9,5 +9,6 @@
 return [
     's/<s:.*>' => 'site/index',
     'player/<p:.*>' => 'player/default/index',
+    'poster/<p:.*>' => 'player/default/poster',
     'apply/<s:.*>' => 'apply/default/index',
 ];
