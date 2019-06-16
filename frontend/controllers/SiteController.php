@@ -89,9 +89,9 @@ class SiteController extends ActivityController
      *
      * @return mixed
      */
-    public function actionIndex($s = null)
+    public function actionIndex($seo_code = null)
     {
-        $activityModel = ActivityModel::findOne(['seo_code' => $s, 'is_released' => Whether::TYPE_YES]);
+        $activityModel = ActivityModel::findOne(['seo_code' => $seo_code, 'is_released' => Whether::TYPE_YES]);
         if (is_null($activityModel) || $activityModel->is_released == Whether::TYPE_NO) {
             throw new NotFoundHttpException(Yii::t('app.c2', 'Activity disable.'));
         }

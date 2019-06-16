@@ -13,6 +13,13 @@ return [
     'gift' => ['class' => 'backend\modules\Gift\Module',],
     'logistics' => ['class' => 'backend\modules\Logistics\Module',],
     'activity-player-vote-record' => ['class' => 'backend\modules\ActivityPlayerVoteRecord\Module', ],
+    'lottery' => [
+        'class' => 'backend\modules\Lottery\Module',
+    ],
+    'lottery-prize' => [
+        'class' => 'backend\modules\LotteryPrize\Module',
+    ],
+
     'sys' => ['class' => 'backend\modules\Sys\Module',],
     'rbac' => [
         'class' => 'backend\modules\Sys\modules\Rbac\Module',

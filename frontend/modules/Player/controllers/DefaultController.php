@@ -50,10 +50,12 @@ class DefaultController extends ActivityController
      * Renders the index view for the module
      * @return string
      */
-    public function actionIndex($p = null)
+    public function actionIndex()
     {
 
-        $playerModel = ActivityPlayerModel::findOne(['player_code' => $p]);
+        // $playerModel = ActivityPlayerModel::findOne(['player_code' => $p]);
+        $queryParams = Yii::$app->request->queryParams;
+        $playerModel = ActivityPlayerModel::find()->where($queryParams)->one();
         if (is_null($playerModel) || $playerModel->state == ActivityPlayerState::STATE_NOT_CHECK) {
             throw new NotFoundHttpException(Yii::t('app.c2', 'Player disable.'));
         }
@@ -81,8 +83,8 @@ class DefaultController extends ActivityController
             'playerModel' => $playerModel, 'model' => $model,]) : $this->render('index', ['playerModel' => $playerModel, 'model' => $model,]);
     }
 
-    // public function actionPoster($p)
-    // {
-    //
-    // }
+    public function actionPlayer($p)
+    {
+
+    }
 }

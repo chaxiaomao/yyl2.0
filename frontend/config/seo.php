@@ -7,8 +7,9 @@
  */
 
 return [
-    's/<s:.*>' => 'site/index',
-    'player/<p:.*>' => 'player/default/index',
+    'q/<seo_code:.*>' => 'site/index',
+    'player/<player_code:.*>' => 'player/default/index',
     'poster/<p:.*>' => 'player/default/poster',
-    'apply/<s:.*>' => 'apply/default/index',
+    'apply/<code:.*>' => 'apply/default/index',
+    'lottery/q/<code:.*>' => 'lottery/default/index',
 ];

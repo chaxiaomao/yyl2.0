@@ -18,7 +18,7 @@ use yii\helpers\Html;
 \frontend\themes\stone\Stone::register($this);
 
 if (Yii::$app->wechat->isWechat) {
-    // $this->render("partials/_wechat_js");
+    $this->render("partials/_wechat_js");
 }
 ?>
 <?php $this->beginPage() ?>
@@ -76,10 +76,10 @@ if (Yii::$app->wechat->isWechat) {
 <?= $content ?>
 <div class="container-fluid bottom">
     <div class="row">
-        <?= Html::a('<span class="glyphicon glyphicon-stats">' . Yii::t('app.c2', 'Rank') . '</span>', '/s/'. $this->context->activity->seo_code, ['class' => 'col-xs-3']) ?>
-        <?= Html::a('<span class="glyphicon glyphicon-gift">' . Yii::t('app.c2', 'Draw') . '</span>', '/s/'. $this->context->activity->seo_code, ['class' => 'col-xs-3']) ?>
+        <?= Html::a('<span class="glyphicon glyphicon-stats">' . Yii::t('app.c2', 'Rank') . '</span>', '/q/'. $this->context->activity->seo_code, ['class' => 'col-xs-3']) ?>
+        <?= Html::a('<span class="glyphicon glyphicon-gift">' . Yii::t('app.c2', 'Lottery') . '</span>', '/lottery/q/'. $this->context->activity->seo_code, ['class' => 'col-xs-3']) ?>
         <?= Html::a('<span class="glyphicon glyphicon-phone">' . Yii::t('app.c2', 'Apply') . '</span>', '/apply/'. $this->context->activity->seo_code, ['class' => 'col-xs-3']) ?>
-        <?= Html::a('<span class="glyphicon glyphicon-user">' . Yii::t('app.c2', 'Mine') . '</span>', '/s/'. $this->context->activity->seo_code, ['class' => 'col-xs-3']) ?>
+        <?= Html::a('<span class="glyphicon glyphicon-user">' . Yii::t('app.c2', 'Mine') . '</span>', '/q/'. $this->context->activity->seo_code, ['class' => 'col-xs-3']) ?>
     </div>
 </div>
 

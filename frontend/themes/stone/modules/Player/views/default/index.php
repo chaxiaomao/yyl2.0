@@ -52,8 +52,10 @@ $rankResult = $playerModel->getActivityRank();
 ]]) ?>
 
 <?php $js = "";
-$js .= "jQuery('{$model->getDetailPjaxName(true)}').off('pjax:send').on('pjax:send', function(){jQuery.fn.czaTools('showLoading', {selector:'{$model->getDetailPjaxName(true)}', 'msg':''});});\n";
-$js .= "jQuery('{$model->getDetailPjaxName(true)}').off('pjax:complete').on('pjax:complete', function(){jQuery.fn.czaTools('hideLoading', {selector:'{$model->getDetailPjaxName(true)}'});});\n";
+// $js .= "jQuery('{$model->getDetailPjaxName(true)}').off('pjax:send').on('pjax:send', function(){jQuery.fn.czaTools('showLoading', {selector:'{$model->getDetailPjaxName(true)}', 'msg':''});});\n";
+// $js .= "jQuery('{$model->getDetailPjaxName(true)}').off('pjax:complete').on('pjax:complete', function(){jQuery.fn.czaTools('hideLoading', {selector:'{$model->getDetailPjaxName(true)}'});});\n";
+$js .= "jQuery('{$model->getDetailPjaxName(true)}').off('pjax:send').on('pjax:send', function(){window.top.window.showLoading();});\n";
+$js .= "jQuery('{$model->getDetailPjaxName(true)}').off('pjax:complete').on('pjax:complete', function(){window.top.window.hideLoading();});\n";
 $this->registerJs($js);
 ?>
 
@@ -152,6 +154,10 @@ $form = ActiveForm::begin([
                         <button type="button" id="btn-gift-vote"
                                 class="btn btn-warning"><?= Yii::t('app.c2', 'Gift Vote') ?></button>
                     </div>
+                    <?php
+                    $js = "$('#btn-gift-vote').on('click', function(e) {jQuery('#gifts').toggle();})";
+                    $this->registerJs($js);
+                    ?>
                 </div>
 
                 <div id="gifts" style="display: none;margin-top: 5px;">
@@ -185,48 +191,44 @@ $form = ActiveForm::begin([
 </div>
 
 <div class="poster">
-    <?= \yii\helpers\Html::a(Yii::t('app.c2', 'Generate Poster'), '/poster/'. $playerModel->player_code , ['class' => 'btn btn-success']) ?>
+    <?= \yii\helpers\Html::a(Yii::t('app.c2', 'Generate Poster'), '/poster/' . $playerModel->player_code, ['class' => 'btn btn-success']) ?>
 </div>
 
 <?php
 
 $js = <<<JS
 
-$('#btn-free-vote').on('click', function(e) {
-  $.ajax({
-    type: 'post',
-    url: '/site/vote',
-    dataType: 'json',
-    data: {id:"{$playerModel->id}"},
-    beforeSend: function() {
-          window.top.window.showLoading();
-    },
-    success: function(res) {
-          if (res) {
-            if (res._meta.result === '0000') {
-                $('#total-vote-number').html(res._data.total_vote_number);
-            }
-            $('#content-modal').find('.modal-title').html('提示');
-            $('#content-modal').modal('show').find('.modal-body').html(res._meta.message);
-        }
-    },
-    error: function(res) {
-      if (res.status === 500) {
-          $('#content-modal').find('.modal-title').html('提示');
-          // $('#content-modal').modal('show').find('.modal-body').html(res.responseText);
-          $('#content-modal').modal('show').find('.modal-body').html('服务器开小差');
-      } 
-    },
-    complete: function() {
-        window.top.window.hideLoading();
-    }
-  })
-  
-})
-
-$('#btn-gift-vote').on('click', function(e) {
-  $('#gifts').toggle();
-})
+// $('#btn-free-vote').on('click', function(e) {
+//   $.ajax({
+//     type: 'post',
+//     url: '/site/vote',
+//     dataType: 'json',
+//     data: {id:"{$playerModel->id}"},
+//     beforeSend: function() {
+//           window.top.window.showLoading();
+//     },
+//     success: function(res) {
+//           if (res) {
+//             if (res._meta.result === '0000') {
+//                 $('#total-vote-number').html(res._data.total_vote_number);
+//             }
+//             $('#content-modal').find('.modal-title').html('提示');
+//             $('#content-modal').modal('show').find('.modal-body').html(res._meta.message);
+//         }
+//     },
+//     error: function(res) {
+//       if (res.status === 500) {
+//           $('#content-modal').find('.modal-title').html('提示');
+//           // $('#content-modal').modal('show').find('.modal-body').html(res.responseText);
+//           $('#content-modal').modal('show').find('.modal-body').html('服务器开小差');
+//       } 
+//     },
+//     complete: function() {
+//         window.top.window.hideLoading();
+//     }
+//   })
+//  
+// })
 
 JS;
 $this->registerJs($js);

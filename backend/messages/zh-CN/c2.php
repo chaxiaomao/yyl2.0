@@ -125,6 +125,16 @@ return [
     'Apply To All Activities' => '适用全部活动',
     'Username Label' => '姓名',
     'This activity has players.' => '该活动有选手，请先删除该活动选手。',
+    'Lottery' => '抽奖',
+    'Lottery Models' => '抽奖列表',
+    'Lottery Model' => '抽奖',
+    'Need Score' => '需要积分/次',
+    'Lottery Prize' => '奖品',
+    'Lottery Prize Models' => '奖品列表',
+    'Lottery Prize Model' => '奖品',
+    'Store Number' => '库存',
+    'Add Lottery Prize Items' => '添加中奖奖品',
+    'Chance' => '中奖概率(权重加起来等于100)',
     '' => '',
 ];
 

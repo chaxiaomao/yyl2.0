@@ -21,6 +21,7 @@ class PosterAction extends Action
 {
     public function run()
     {
+        $this->controller->layout = '/main-empty';
         $param = \Yii::$app->request->get('p');
         $playerModel = ActivityPlayerModel::findOne(['player_code' => $param]);
         // $activityModel = $playerModel->activity;

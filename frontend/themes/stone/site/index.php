@@ -5,10 +5,37 @@
  * Date: 2019/6/14 0014
  * Time: 下午 13:24
  */
+
+$this->title = $activityModel->title;
 ?>
 
 <style type="text/css">
 
+    .box {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .box-item {
+        width: 50%;
+        padding: 5px;
+    }
+
+    .box-item .player {
+        background-color: white;
+    }
+
+    .box .box-item:nth-child(2n) {
+        padding-right: 0;
+    }
+
+    .box .box-item:nth-child(2n+1) {
+        padding-left: 0;
+    }
+
+    .more {
+        color: #ffffff;
+    }
 
 </style>
 
@@ -42,11 +69,9 @@
 
     <?= \frontend\widgets\CounterDown::widget(['activityModel' => $activityModel]) ?>
 
-    <div id="sortable" class="sjs-default">
-
-        <?php //$rank = 1 ?>
+    <div class="box">
         <?php foreach ($playerModels as $item): ?>
-            <div data-sjsel="flatty">
+            <div class="box-item">
                 <div class="card">
                     <img class="card__picture" src="<?= $item->getThumbnailUrl() ?>" alt="">
                     <div class="card-infos">
@@ -66,16 +91,25 @@
                 </div>
             </div>
         <?php endforeach; ?>
-
-        <div style="clear: both"></div>
-
     </div>
+
+    <div style="text-align: center">
+        <?= \yii\helpers\Html::a(Yii::t('app.c2', 'More Players'), '', ['class' => 'btn btn-link more']); ?>
+    </div>
+
 </div>
 
+<?php
 
+$js = <<<JS
 
-<script type="text/javascript">
-    $(function () {
-        document.querySelector('#sortable').sortablejs()
-    });
-</script>
+// document.querySelector('#sortable').sortablejs()
+JS;
+$this->registerJs($js);
+?>
+
+<!--<script type="text/javascript">-->
+<!--    $(function () {-->
+<!--        document.querySelector('#sortable').sortablejs()-->
+<!--    });-->
+<!--</script>-->

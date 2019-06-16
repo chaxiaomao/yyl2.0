@@ -70,7 +70,7 @@ return [
     'You can vote {s1} once day.' => '一天只能投{s1}票奥。',
     'Vote Success' => '投票成功',
     'Rank' => '排行榜',
-    'Draw' => '抽奖',
+    'Lottery' => '抽奖',
     'Apply' => '报名',
     'Mine' => '我的',
     'Activity Introduce' => '-- 活动说明 --',
@@ -102,6 +102,12 @@ return [
     'Newest voted.' => '他们刚刚给ta投票!',
     'Generate Poster' => '生成海报',
     'Poster tips.' => '提示：长按图片保存到手机。',
+    'My Poster' => '二维码海报',
+    'Lottery disable.' => '该活动尚未开通抽奖，请敬请期待~',
+    'Current Point:' => '当前积分：',
+    'Rules' => '规则',
+    'Go Drawing' => '开始抽奖',
+    'More Players' => '查看更多',
     '' => '',
 ];
 

@@ -13,6 +13,9 @@ return [
     'apply' => [
         'class' => 'frontend\modules\Apply\Module',
     ],
+    'lottery' => [
+        'class' => 'frontend\modules\Lottery\Module',
+    ],
     'attachments' => [
         'class' => 'cza\base\modules\Attachments\Module',
     ],

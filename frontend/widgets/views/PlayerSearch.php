@@ -11,7 +11,7 @@ use yii\helpers\Html;
 ?>
 
 
-<?php echo Html::beginForm('/p', 'post', ['style' => 'margin:10px 0']); ?>
+<?php echo Html::beginForm('/player', 'get', ['style' => 'margin:10px 0']); ?>
 <div class="row">
     <div class="col-xs-8" style="padding-right: 0;">
         <?= Html::input('text', 'player_code', '', [

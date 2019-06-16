@@ -43,6 +43,8 @@ use yii\helpers\Html;
                     [
                         'label' => Yii::t('app.c2', '{s1} Management', ['s1' => Yii::t('app.c2', 'Finance')]), 'icon' => 'fa fa-circle-o', 'url' => ['#'], 'options' => ['class' => 'treeview'],
                         'items' => [
+                            ['label' => Yii::t('app.c2', '{s1} Management', ['s1' => Yii::t('app.c2', 'Lottery')]), 'icon' => 'fa fa-circle-o', 'url' => ['/lottery']],
+                            ['label' => Yii::t('app.c2', '{s1} Management', ['s1' => Yii::t('app.c2', 'Lottery Prize')]), 'icon' => 'fa fa-circle-o', 'url' => ['/lottery-prize']],
                             ['label' => Yii::t('app.c2', '{s1} Management', ['s1' => Yii::t('app.c2', 'Gift')]), 'icon' => 'fa fa-circle-o', 'url' => ['/gift']],
                             ['label' => Yii::t('app.c2', '{s1} Management', ['s1' => Yii::t('app.c2', 'Gift Order')]), 'icon' => 'fa fa-circle-o', 'url' => ['/gift-order']],
                         ]
