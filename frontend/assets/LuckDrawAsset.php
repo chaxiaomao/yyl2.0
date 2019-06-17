@@ -15,11 +15,13 @@ class LuckDrawAsset extends AssetBundle
     public $css = [
         // 'css/dmaku.css',
         'GB-canvas-turntable/css/typo/typo.css',
-        'GB-canvas-turntable/css/GB-canvas-turntable.css'
+        'GB-canvas-turntable/css/GB-canvas-turntable.css',
+        'GB-canvas-turntable/css/jquery.my-modal.1.1.css'
     ];
     public $js = [
          'GB-canvas-turntable/js/zepto.min.js',
         // 'js/kinerLottery.js',
+        'GB-canvas-turntable/js/jquery.my-modal.1.1.min.js',
         'https://res.wx.qq.com/open/js/jweixin-1.0.0.js',  // wechat js SDK
         'GB-canvas-turntable/js/GB-canvas-turntable.js'
     ];

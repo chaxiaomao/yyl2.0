@@ -81,7 +81,7 @@ $form = ActiveForm::begin([
             'form' => $form,
             'columns' => 2,
             'attributes' => [
-                'type' => ['type' => Form::INPUT_DROPDOWN_LIST, 'items' => []],
+                'type' => ['type' => Form::INPUT_DROPDOWN_LIST, 'items' => \common\models\c2\statics\LotteryPrizeType::getHashMap('id', 'label')],
                 'name' => ['type' => Form::INPUT_TEXT, 'options' => ['placeholder' => $model->getAttributeLabel('name')]],
                 'label' => ['type' => Form::INPUT_TEXT, 'options' => ['placeholder' => $model->getAttributeLabel('label')]],
                 // 'lottery_id' => ['type' => Form::INPUT_TEXT, 'options' => ['placeholder' => $model->getAttributeLabel('lottery_id')]],

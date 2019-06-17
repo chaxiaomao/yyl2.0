@@ -17,6 +17,9 @@ use yii\helpers\Html;
         <?= Html::input('text', 'player_code', '', [
             'class' => 'search-inp', 'placeholder' => Yii::t('app.c2', 'Input player code or name to search...')
         ]) ?>
+        <?= Html::hiddenInput('activity_id', $activityModel->id, [
+            'class' => 'search-inp', 'placeholder' => Yii::t('app.c2', 'Input player code or name to search...')
+        ]) ?>
     </div>
 
     <div class="col-xs-4">

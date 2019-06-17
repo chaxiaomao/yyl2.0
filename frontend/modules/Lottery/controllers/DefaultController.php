@@ -4,7 +4,9 @@ namespace frontend\modules\Lottery\controllers;
 
 use common\models\c2\entity\ActivityModel;
 use common\models\c2\entity\LotteryModel;
+use common\models\c2\entity\LotteryPrizeModel;
 use common\models\c2\entity\LotteryRecordModel;
+use common\models\c2\statics\LotteryPrizeType;
 use common\models\c2\statics\LotteryRecordState;
 use common\models\c2\statics\Whether;
 use frontend\components\behaviors\WechatAuthBehavior;
@@ -33,10 +35,11 @@ class DefaultController extends ActivityController
      * Renders the index view for the module
      * @return string
      */
-    public function actionIndex($code)
+    public function actionIndex($seo_code)
     {
         $this->layout = '/main-block';
-        $activityModel = ActivityModel::findOne(['seo_code' => $code, 'is_released' => Whether::TYPE_YES]);
+        $userId = Yii::$app->user->id;
+        $activityModel = ActivityModel::findOne(['seo_code' => $seo_code, 'is_released' => Whether::TYPE_YES]);
         if (is_null($activityModel) || $activityModel->is_released == Whether::TYPE_NO) {
             throw new NotFoundHttpException(Yii::t('app.c2', 'Activity disable.'));
         }
@@ -44,8 +47,12 @@ class DefaultController extends ActivityController
         if ($model == false) {
             throw new NotFoundHttpException(Yii::t('app.c2', 'Lottery disable.'));
         }
+        $prizeModels = LotteryRecordModel::find()
+            ->where(['user_id' => $userId, 'lottery_id' => $model->id])
+            ->all();
         return $this->render('index', [
-            'model' => $model
+            'model' => $model,
+            'prizeModels' => $prizeModels
         ]);
     }
 
@@ -79,26 +86,27 @@ class DefaultController extends ActivityController
             $arr[$val['index']] = $val['v'];
         }
         $rid = self::get_rand($arr); //根据概率获取奖项id的索引
-        $lotteryRecordModel = new LotteryRecordModel();
-        $lotteryRecordModel->loadDefaultValues();
 
-        $lotteryRecordModel->setAttributes([
-            'user_id' => $user->id,
-            'code' => Yii::$app->security->generateRandomString(4),
-            'lottery_name' => $lotteryModel->name,
-            'prize_name' => $prize_arr[$rid]['prize'],
-            'lottery_id' => $lotteryModel->id,
-            'prize_id' => $prize_arr[$rid]['id'],
-            'state' => LotteryRecordState::TYPE_NOT_DRAW,
-        ]);
-        if ($lotteryRecordModel->save()) {
-            // 扣除积分
-            $user->updateCounters(['score' => -($lotteryModel->need_score)]);
-            // return ['code' => 000, 'message' => '操作成功', 'data' => ['rid' => array_search($rid, array_keys($arr)), 'point_num' => $point->point_num]];
-            return ['code' => 000, 'message' => Yii::t('app.c2', 'Operated Success'), 'data' => ['rid' => $rid, 'point_num' => $user->score]];
-        } else {
-            return ['code' => 000, 'message' => Yii::t('app.c2', 'Operated Success'), 'data' => false];
+        $prizeId = $prize_arr[$rid]['id'];
+        $prizeModel = LotteryPrizeModel::findOne($prizeId);
+        if ($prizeModel->type == LotteryPrizeType::TYPE_DRAWN) {
+            $lotteryRecordModel = new LotteryRecordModel();
+            $lotteryRecordModel->loadDefaultValues();
+
+            $lotteryRecordModel->setAttributes([
+                'user_id' => $user->id,
+                'code' => Yii::$app->security->generateRandomString(4),
+                'lottery_name' => $lotteryModel->name,
+                'prize_name' => $prize_arr[$rid]['prize'],
+                'lottery_id' => $lotteryModel->id,
+                'prize_id' => $prize_arr[$rid]['id'],
+                'state' => LotteryRecordState::TYPE_NOT_DRAW,
+            ]);
+            $lotteryRecordModel->save();
         }
+
+        $user->updateCounters(['score' => -($lotteryModel->need_score)]);
+        return ['code' => 000, 'message' => Yii::t('app.c2', 'Operated Success'), 'data' => ['rid' => $rid, 'point_num' => $user->score]];
     }
 
     /*

@@ -121,7 +121,7 @@ class ActivityModel extends \cza\base\models\ActiveRecord
         parent::loadDefaultValues($skipIfSet);
         if ($this->isNewRecord) {
             // $this->seo_code = Yii::$app->security->generateRandomString(6);
-            $this->seo_code = CodeGenerator::getActivityCodeByDate($this, 'vc');
+            $this->seo_code = CodeGenerator::getActivityCodeByDate($this, 'vasc');
         }
     }
 

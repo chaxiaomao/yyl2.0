@@ -69,7 +69,7 @@ $this->registerCSS($css);
 
 <?php
 $form = ActiveForm::begin([
-    'action' => ['index', 's' => $activityModel->seo_code],
+    'action' => ['index', 'seo_code' => $activityModel->seo_code],
     'options' => [
         'id' => $model->getBaseFormName(),
         'data-pjax' => true,

@@ -135,6 +135,7 @@ return [
     'Store Number' => '库存',
     'Add Lottery Prize Items' => '添加中奖奖品',
     'Chance' => '中奖概率(权重加起来等于100)',
+    'Drawn' => '中奖',
     '' => '',
 ];
 

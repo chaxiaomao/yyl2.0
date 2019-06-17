@@ -61,7 +61,7 @@ $this->registerJs($js);
 
 <?php
 $form = ActiveForm::begin([
-    'action' => ['/player', 'p' => $playerModel->player_code],
+    'action' => ['/player', 'player_code' => $playerModel->player_code],
     'options' => [
         'id' => $model->getBaseFormName(),
         'data-pjax' => true,
@@ -231,7 +231,7 @@ $js = <<<JS
 // })
 
 JS;
-$this->registerJs($js);
+// $this->registerJs($js);
 
 ?>
 

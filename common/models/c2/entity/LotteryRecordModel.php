@@ -80,4 +80,9 @@ class LotteryRecordModel extends \cza\base\models\ActiveRecord
         parent::loadDefaultValues($skipIfSet);
     }
 
+    public function getPrize()
+    {
+        return $this->hasOne(LotteryPrizeModel::className(), ['id' => 'prize_id']);
+    }
+
 }

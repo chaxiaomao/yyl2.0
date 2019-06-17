@@ -35,9 +35,9 @@ class DefaultController extends ActivityController
      * Renders the index view for the module
      * @return string
      */
-    public function actionIndex($code = null)
+    public function actionIndex($seo_code = null)
     {
-        $activityModel = ActivityModel::findOne(['seo_code' => $code, 'is_released' => Whether::TYPE_YES]);
+        $activityModel = ActivityModel::findOne(['seo_code' => $seo_code, 'is_released' => Whether::TYPE_YES]);
         if (is_null($activityModel)) {
             throw new NotFoundHttpException(Yii::t('app.c2', 'Activity disable.'));
         }

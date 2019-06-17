@@ -13,7 +13,7 @@ $this->title = $model->name;
         height: 100%;
     }
 
-    .body {
+    body {
         position: fixed;
         left: 0;
         top: 0;
@@ -37,8 +37,19 @@ $this->title = $model->name;
         border: none;
     }
 
-    .point-text {
+    .bar {
         margin: 10px;
+    }
+
+    .bar p {
+        display: inline;
+        text-align: left;
+        color: white;
+    }
+
+    .bar a {
+        display: inline;
+        float: right;
         color: white;
     }
 
@@ -52,9 +63,25 @@ $this->title = $model->name;
 
 </style>
 
-<p class="point-text"><?= Yii::t('app.c2', 'Current Point:') ?><span
-            id="point"><?= Yii::$app->user->identity->score ?></span></p>
-<div class="body"></div>
+<div class="m-modal">
+    <div class="m-modal-dialog">
+        <div class="m-top">
+            <span class="m-modal-close">&times;</span>
+        </div>
+        <div class="m-middle">
+            <?php foreach ($prizeModels as $prizeModel): ?>
+                <p><?= $prizeModel->prize->name ?><span style="float: right"><?= $prizeModel->created_at ?></span></p>
+            <?php endforeach; ?>
+        </div>
+    </div>
+</div>
+
+<div class="bar">
+    <p> <?= Yii::t('app.c2', 'Current Point:') ?><span
+                id="point"><?= Yii::$app->user->identity->score ?></span></p>
+
+    <?= Html::a(Yii::t('app.c2', 'My Prizes'), 'javascript:;', ['id' => 'prizes']) ?>
+</div>
 
 
 <div style="margin: 0 auto;width: 100%;margin-top: 140px;">
@@ -81,28 +108,27 @@ $this->title = $model->name;
     </div>
 </div>
 
+<?php
+
+$js = <<<JS
+var m1 = new MyModal.modal(function() {
+    alert("你点击了确定");
+});
+$('#prizes').on('click', function(e) {
+m1.show();
+});
+JS;
+
+$this->registerJs($js);
+
+?>
+
 <script>
     document.addEventListener('DOMContentLoaded', function () {
         gbTurntable.init({
             id: 'turntable',
             config: function (callback) {
                 // 获取奖品信息
-                // callback && callback(['11元红包','2元红包','3元红包','4元红包','5元红包','6元红包']);
-                // callback && callback([{
-                //     text: '1元红包',
-                //     img: 'images/redpacket.png'
-                // }, {
-                //     text: '2元红包'
-                // }, {
-                //     text: '3元红包'
-                // }, {
-                //     text: '显示器',
-                //     img: 'images/display.png'
-                // }, {
-                //     text: '5元红宝'
-                // }, {
-                //     text: '6元红宝'
-                // }])
                 callback && callback(<?= json_encode($model->getPrizesArr()) ?>)
             },
             getPrize: function (callback) {

@@ -108,6 +108,12 @@ return [
     'Rules' => '规则',
     'Go Drawing' => '开始抽奖',
     'More Players' => '查看更多',
+    'Drawn' => '中奖',
+    'Last Page' => '上一页',
+    'Next Page' => '下一页',
+    'My Prizes' => '中奖记录',
+    'Checked' => '已审核',
+    'Not Check' => '待审核',
     '' => '',
 ];
 

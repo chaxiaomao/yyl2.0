@@ -2,8 +2,10 @@
 
 namespace frontend\modules\Player\controllers;
 
+use common\models\c2\entity\ActivityModel;
 use common\models\c2\entity\ActivityPlayerModel;
 use common\models\c2\entity\ActivityPlayerVoteRecordModel;
+use common\models\c2\search\ActivityPlayerSearch;
 use common\models\c2\search\ActivityPlayerVoteRecordSearch;
 use common\models\c2\statics\ActivityPlayerState;
 use common\models\c2\statics\Whether;
@@ -83,8 +85,18 @@ class DefaultController extends ActivityController
             'playerModel' => $playerModel, 'model' => $model,]) : $this->render('index', ['playerModel' => $playerModel, 'model' => $model,]);
     }
 
-    public function actionPlayer($p)
+    public function actionPlayers($vasc)
     {
-
+        $this->layout = '/main-empty';
+        $activityModel = ActivityModel::findOne(['seo_code' => $vasc]);
+        $searchModel = new ActivityPlayerSearch();
+        $searchModel->activity_id = $activityModel->id;
+        $searchModel->state = ActivityPlayerState::STATE_CHECKED;
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        return $this->render('players', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+            'activityModel' => $activityModel,
+        ]);
     }
 }

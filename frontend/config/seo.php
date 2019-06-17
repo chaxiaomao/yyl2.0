@@ -9,7 +9,8 @@
 return [
     'q/<seo_code:.*>' => 'site/index',
     'player/<player_code:.*>' => 'player/default/index',
+    'players' => 'player/default/players',
     'poster/<p:.*>' => 'player/default/poster',
-    'apply/<code:.*>' => 'apply/default/index',
-    'lottery/q/<code:.*>' => 'lottery/default/index',
+    'apply/<seo_code:.*>' => 'apply/default/index',
+    'lottery/q/<seo_code:.*>' => 'lottery/default/index',
 ];

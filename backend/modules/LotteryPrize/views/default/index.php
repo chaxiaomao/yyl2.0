@@ -61,6 +61,12 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
             'id',
             // 'type',
+            [
+                'attribute' => 'type',
+                'value' => function ($model) {
+                    return \common\models\c2\statics\LotteryPrizeType::getLabel($model->type);
+                }
+            ],
             'name',
             'label',
             // 'lottery_id',

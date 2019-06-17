@@ -16,6 +16,9 @@ return [
     'lottery' => [
         'class' => 'frontend\modules\Lottery\Module',
     ],
+    'center' => [
+        'class' => 'frontend\modules\Center\Module',
+    ],
     'attachments' => [
         'class' => 'cza\base\modules\Attachments\Module',
     ],

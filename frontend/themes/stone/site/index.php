@@ -43,7 +43,7 @@ $this->title = $activityModel->title;
 
 <div class="container-fluid">
 
-    <?= \frontend\widgets\PlayerSearch::widget([]) ?>
+    <?= \frontend\widgets\PlayerSearch::widget(['activityModel' => $activityModel]) ?>
 
     <div class="row statics white-bg">
         <div class="col-xs-4">
@@ -94,7 +94,7 @@ $this->title = $activityModel->title;
     </div>
 
     <div style="text-align: center">
-        <?= \yii\helpers\Html::a(Yii::t('app.c2', 'More Players'), '', ['class' => 'btn btn-link more']); ?>
+        <?= \yii\helpers\Html::a(Yii::t('app.c2', 'More Players'), ['/players', 'vasc' => $activityModel->seo_code], ['class' => 'btn btn-link more']); ?>
     </div>
 
 </div>

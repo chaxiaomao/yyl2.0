@@ -79,7 +79,7 @@ if (Yii::$app->wechat->isWechat) {
         <?= Html::a('<span class="glyphicon glyphicon-stats">' . Yii::t('app.c2', 'Rank') . '</span>', '/q/'. $this->context->activity->seo_code, ['class' => 'col-xs-3']) ?>
         <?= Html::a('<span class="glyphicon glyphicon-gift">' . Yii::t('app.c2', 'Lottery') . '</span>', '/lottery/q/'. $this->context->activity->seo_code, ['class' => 'col-xs-3']) ?>
         <?= Html::a('<span class="glyphicon glyphicon-phone">' . Yii::t('app.c2', 'Apply') . '</span>', '/apply/'. $this->context->activity->seo_code, ['class' => 'col-xs-3']) ?>
-        <?= Html::a('<span class="glyphicon glyphicon-user">' . Yii::t('app.c2', 'Mine') . '</span>', '/q/'. $this->context->activity->seo_code, ['class' => 'col-xs-3']) ?>
+        <?= Html::a('<span class="glyphicon glyphicon-user">' . Yii::t('app.c2', 'Mine') . '</span>', ['/center', 'vasc' => $this->context->activity->seo_code], ['class' => 'col-xs-3']) ?>
     </div>
 </div>
 
