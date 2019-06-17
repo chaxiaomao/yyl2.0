@@ -126,13 +126,21 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
             [
                 'class' => \common\widgets\grid\ActionColumn::className(),
+                'template' => '{update} {delete}',
                 'buttons' => [
                     'update' => function ($url, $model, $key) {
                         return Html::a('<span class="glyphicon glyphicon-pencil"></span>', ['edit', 'id' => $model->id], [
                             'title' => Yii::t('app', 'Info'),
                             'data-pjax' => '0',
                         ]);
-                    }
+                    },
+                    //  'setStart' => function ($url, $model, $key) {
+                    //     return Html::a(Yii::t('app.c2', 'Set Start'), ['setStart', 'id' => $model->id], [
+                    //         'title' => Yii::t('app', 'Set Start'),
+                    //         'data-pjax' => '0',
+                    //         'class' => 'btn btn-success btn-sm setStart',
+                    //     ]);
+                    // }
                 ]
             ],
 
@@ -140,3 +148,45 @@ $this->params['breadcrumbs'][] = $this->title;
     ]); ?>
 
 </div>
+
+
+<?php
+$js = "";
+
+$js .= "jQuery(document).off('click', 'a.setStart').on('click', 'a.setStart', function(e) {
+                e.preventDefault();
+                var lib = window['krajeeDialog'];
+                var url = jQuery(e.currentTarget).attr('href');
+                lib.confirm('" . Yii::t('app.c2', 'Are you sure that?') . "', function (result) {
+                    if (!result) {
+                        return;
+                    }
+                    
+                    jQuery.ajax({
+                            url: url,
+                            success: function(data) {
+                                var lifetime = 6500;
+                                if(data._meta.result == '" . cza\base\models\statics\OperationResult::SUCCESS . "'){
+                                    jQuery('#{$model->getPrefixName('grid')}').trigger('" . OperationEvent::REFRESH . "');
+                                }
+                                else{
+                                  lifetime = 16500;
+                                }
+                                jQuery.msgGrowl ({
+                                        type: data._meta.type, 
+                                        title: '" . Yii::t('cza', 'Tips') . "',
+                                        text: data._meta.message,
+                                        position: 'top-center',
+                                        lifetime: lifetime,
+                                });
+                            },
+                            error :function(data){alert(data._meta.message);}
+                    });
+                });
+            });";
+
+
+$js .= "$.fn.modal.Constructor.prototype.enforceFocus = function(){};";   // fix select2 widget input-bug in popup
+
+$this->registerJs($js);
+?>

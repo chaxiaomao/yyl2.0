@@ -45,6 +45,8 @@ $rankResult = $playerModel->getActivityRank();
 
 ?>
 
+<?= \frontend\widgets\DailyStart::widget(['activityModel' => $playerModel->activity]) ?>
+
 <?= \frontend\widgets\Loading::widget([]) ?>
 
 <?php Pjax::begin(['id' => $model->getDetailPjaxName(), 'formSelector' => $model->getBaseFormName(true), 'enablePushState' => false, 'clientOptions' => [

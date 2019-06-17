@@ -201,4 +201,9 @@ class ActivityModel extends \cza\base\models\ActiveRecord
 
     }
 
+    public function getDailyStart()
+    {
+        return $this->hasOne(ActivityPlayerModel::className(), ['id' => 'start_id']);
+    }
+
 }

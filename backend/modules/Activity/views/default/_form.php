@@ -64,6 +64,9 @@ $form = ActiveForm::begin([
                 'view_number' => ['type' => Form::INPUT_TEXT, 'options' => ['placeholder' => $model->getAttributeLabel('view_number')]],
                 'income' => ['type' => Form::INPUT_TEXT, 'options' => ['placeholder' => $model->getAttributeLabel('income_number')]],
                 'status' => ['type' => Form::INPUT_DROPDOWN_LIST, 'items' => EntityModelStatus::getHashMap('id', 'label')],
+                'start_id' => ['type' => Form::INPUT_DROPDOWN_LIST, 'items' => ['0' => '请选择。'] + \common\models\c2\entity\ActivityPlayerModel::getHashMap('id', 'label', [
+                        'activity_id' => $model->id
+                ])],
                 // 'content' => ['type' => Form::INPUT_WIDGET, 'widgetClass' => '\vova07\imperavi\Widget', 'options' => [
                 //     'settings' => [
                 //         'minHeight' => 150,

@@ -152,7 +152,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         },
                         'browser' => function ($url, $model, $key) {
                             return Html::a('<span class="glyphicon glyphicon-globe"></span>',
-                                FRONTEND_BASE_URL . '/s/' . $model->seo_code, [
+                                FRONTEND_BASE_URL . '/q/' . $model->seo_code, [
                                     'title' => Yii::t('app.c2', 'Browser'),
                                     'data-pjax' => '0',
                                     'target' => '_blank'

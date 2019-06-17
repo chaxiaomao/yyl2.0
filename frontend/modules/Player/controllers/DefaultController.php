@@ -42,9 +42,9 @@ class DefaultController extends ActivityController
     public function behaviors()
     {
         return [
-            'wechatFilter' => [
-                'class' => WechatAuthBehavior::className()
-            ]
+            // 'wechatFilter' => [
+            //     'class' => WechatAuthBehavior::className()
+            // ]
         ];
     }
 

@@ -6,6 +6,7 @@ use common\helpers\CodeGenerator;
 use common\helpers\VoteHelper;
 use common\models\c2\statics\ActivityPlayerState;
 use common\models\c2\statics\ActivityPlayerType;
+use common\models\c2\statics\Whether;
 use Yii;
 use yii\helpers\ArrayHelper;
 
@@ -110,6 +111,7 @@ class ActivityPlayerModel extends \cza\base\models\ActiveRecord
             'status' => Yii::t('app.c2', 'Status'),
             'created_at' => Yii::t('app.c2', 'Created At'),
             'updated_at' => Yii::t('app.c2', 'Updated At'),
+            'daily_start' => Yii::t('app.c2', 'Daily Start'),
         ];
     }
 
